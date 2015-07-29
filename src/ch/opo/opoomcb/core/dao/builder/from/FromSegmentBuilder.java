@@ -29,6 +29,11 @@ public class FromSegmentBuilder
       insertSimpleFrom(alias, from);
    }
 
+   public JoinBuilder join(String alias, String typecode)
+   {
+      return new JoinBuilder(query, alias, typecode);
+   }
+
    public ParamBuilder where()
    {
       return new ParamBuilder(query);

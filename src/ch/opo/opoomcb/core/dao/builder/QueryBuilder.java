@@ -9,7 +9,6 @@ package ch.opo.opoomcb.core.dao.builder;
 
 import ch.opo.opoomcb.core.dao.builder.constants.QueryElements;
 import ch.opo.opoomcb.core.dao.builder.from.FromSegmentBuilder;
-import org.apache.commons.lang.StringUtils;
 
 /**
  * @author Paweł Łabuda
@@ -24,7 +23,8 @@ public class QueryBuilder
    {
       this.distinct = distinct;
 
-      if (StringUtils.isNotBlank(param))
+//      if (StringUtils.isNotBlank(param))//todo
+      if (param != null)
       {
          SELECT_ITEM = param;
       }

@@ -22,6 +22,7 @@ public enum QueryElements
    LIKE(" LIKE "),
    DISTINCT("DISTINCT "),
    AS(" AS "),
+   ON(" ON "),
    RESULTS_SEPARATOR(","),
    KEY_PARAM_PREFIX("{"),
    KEY_PARAM_SUFIX("}"),

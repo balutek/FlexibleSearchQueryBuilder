@@ -7,9 +7,6 @@
  */
 package ch.opo.opoomcb.core.dao.builder.model.operation;
 
-import java.util.ArrayList;
-import java.util.List;
-
 /**
  * @author Paweł Łabuda
  */

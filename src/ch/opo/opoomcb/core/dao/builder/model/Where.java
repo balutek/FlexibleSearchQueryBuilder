@@ -24,7 +24,6 @@ public class Where
       operationList = new ArrayList<Operation>();
    }
 
-
    public void addOperation(Operation operation)
    {
       operationList.add(operation);
