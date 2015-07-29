@@ -9,6 +9,7 @@ package ch.opo.opoomcb.core.dao.builder;
 
 import ch.opo.opoomcb.core.dao.builder.constants.QueryElements;
 import ch.opo.opoomcb.core.dao.builder.from.FromSegmentBuilder;
+import ch.opo.opoomcb.core.dao.builder.model.Select;
 
 /**
  * @author Paweł Łabuda
@@ -19,6 +20,8 @@ public class QueryBuilder
 
    private boolean distinct;
 
+   private Select SELECT;
+
    private QueryBuilder(String param, boolean distinct)
    {
       this.distinct = distinct;
@@ -28,6 +31,8 @@ public class QueryBuilder
       {
          SELECT_ITEM = param;
       }
+      SELECT = new Select();
+      SELECT.setDistinct(distinct);
    }
 
    public static QueryBuilder select()
