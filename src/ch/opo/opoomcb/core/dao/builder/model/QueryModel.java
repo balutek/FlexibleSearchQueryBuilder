@@ -23,4 +23,24 @@ public class QueryModel
    {
       this.queryParams = new HashMap<String, Object>();
    }
+
+   public Select getSelect()
+   {
+      return select;
+   }
+
+   public void setSelect(Select select)
+   {
+      this.select = select;
+   }
+
+   public Map<String, Object> getQueryParams()
+   {
+      return queryParams;
+   }
+
+   public void setQueryParams(Map<String, Object> queryParams)
+   {
+      this.queryParams = queryParams;
+   }
 }

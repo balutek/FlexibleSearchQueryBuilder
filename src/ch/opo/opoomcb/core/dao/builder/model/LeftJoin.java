@@ -12,8 +12,8 @@ package ch.opo.opoomcb.core.dao.builder.model;
  */
 public class LeftJoin extends Join
 {
-   public LeftJoin(Column column)
+   public LeftJoin(Table table)
    {
-      super(column);
+      super(table);
    }
 }

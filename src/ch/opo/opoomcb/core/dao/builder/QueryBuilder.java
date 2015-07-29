@@ -82,7 +82,7 @@ public class QueryBuilder
             .append(".");
       }
       query.append(SELECT_ITEM)
-         .append(QueryElements.KEY_PARAM_SUFIX)
+         .append(QueryElements.KEY_PARAM_SUFFIX)
          .append(QueryElements.FROM)
          .append(QueryElements.KEY_PARAM_PREFIX);
 

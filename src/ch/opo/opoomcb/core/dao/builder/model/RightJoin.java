@@ -12,8 +12,8 @@ package ch.opo.opoomcb.core.dao.builder.model;
  */
 public class RightJoin extends Join
 {
-   public RightJoin(Column column)
+   public RightJoin(Table table)
    {
-      super(column);
+      super(table);
    }
 }

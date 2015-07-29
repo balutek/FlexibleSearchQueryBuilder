@@ -15,13 +15,19 @@ import java.util.List;
  */
 public class From
 {
-   private Column column;
+   private Table table;
 
    private List<Join> joinList;
 
-   public From()
+   public From(Table table)
    {
+      this.table = table;
       joinList = new ArrayList<Join>();
+   }
+
+   public Table getTable()
+   {
+      return table;
    }
 
    public void addJoin(Join join)

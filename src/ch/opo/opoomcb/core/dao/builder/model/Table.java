@@ -10,14 +10,14 @@ package ch.opo.opoomcb.core.dao.builder.model;
 /**
  * @author Paweł Łabuda
  */
-public class Column
 
+public class Table
 {
    private String name;
 
    private String alias;
 
-   public Column(String name, String alias)
+   public Table(String name, String alias)
    {
       this.name = name;
       this.alias = alias;

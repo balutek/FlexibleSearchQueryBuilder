@@ -31,7 +31,7 @@ public class JoinOnBuilder
                 .append(alias1)
                 .append(".")
                 .append(param1)
-                .append(QueryElements.KEY_PARAM_SUFIX)
+                .append(QueryElements.KEY_PARAM_SUFFIX)
                 .append(" ")
                 .append(operator)
                 .append(" ")
@@ -39,7 +39,7 @@ public class JoinOnBuilder
                 .append(alias2)
                 .append(".")
                 .append(param2)
-                .append(QueryElements.KEY_PARAM_SUFIX);
+                .append(QueryElements.KEY_PARAM_SUFFIX);
     }
 
     public void insertRestrictionWithNull(String alias, String param, String nullQuery)
@@ -48,7 +48,7 @@ public class JoinOnBuilder
                 .append(alias)
                 .append(".")
                 .append(param)
-                .append(QueryElements.KEY_PARAM_SUFIX)
+                .append(QueryElements.KEY_PARAM_SUFFIX)
                 .append(" ")
                 .append(nullQuery);
     }

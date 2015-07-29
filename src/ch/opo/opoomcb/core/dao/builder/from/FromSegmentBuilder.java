@@ -49,12 +49,12 @@ public class FromSegmentBuilder
       query.append(from)
          .append(QueryElements.AS)
          .append(alias)
-         .append(QueryElements.KEY_PARAM_SUFIX);
+         .append(QueryElements.KEY_PARAM_SUFFIX);
    }
 
    private void insertSimpleFrom(String from)
    {
       query.append(from)
-         .append(QueryElements.KEY_PARAM_SUFIX);
+         .append(QueryElements.KEY_PARAM_SUFFIX);
    }
 }

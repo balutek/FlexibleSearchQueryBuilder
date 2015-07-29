@@ -44,7 +44,7 @@ public class WhereSegmentBuilder
       String key = createKey(param);
       query.append(QueryElements.KEY_PARAM_PREFIX)
          .append(param)
-         .append(QueryElements.KEY_PARAM_SUFIX)
+         .append(QueryElements.KEY_PARAM_SUFFIX)
          .append(" ")
          .append(operator)
          .append(" ")
@@ -57,7 +57,7 @@ public class WhereSegmentBuilder
    {
       query.append(QueryElements.KEY_PARAM_PREFIX)
          .append(param)
-         .append(QueryElements.KEY_PARAM_SUFIX)
+         .append(QueryElements.KEY_PARAM_SUFFIX)
          .append(" ")
          .append(nullQuery);
    }
@@ -66,7 +66,7 @@ public class WhereSegmentBuilder
    {
       query.append(QueryElements.KEY_PARAM_PREFIX)
          .append(param)
-         .append(QueryElements.KEY_PARAM_SUFIX)
+         .append(QueryElements.KEY_PARAM_SUFFIX)
          .append(QueryElements.LIKE)
          .append("'")
          .append(value)
@@ -78,7 +78,7 @@ public class WhereSegmentBuilder
    {
       query.append(QueryElements.KEY_PARAM_PREFIX)
          .append(param)
-         .append(QueryElements.KEY_PARAM_SUFIX)
+         .append(QueryElements.KEY_PARAM_SUFFIX)
          .append(QueryElements.IN)
          .append(QueryElements.OPEN_BRACKET);
       for (int i = 0; i < values.length; ++i)

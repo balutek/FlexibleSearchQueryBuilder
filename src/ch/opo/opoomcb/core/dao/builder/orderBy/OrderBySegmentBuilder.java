@@ -33,6 +33,6 @@ public class OrderBySegmentBuilder
       query.append(QueryElements.ORDER_BY)
          .append(QueryElements.KEY_PARAM_PREFIX)
          .append(order)
-         .append(QueryElements.KEY_PARAM_SUFIX);
+         .append(QueryElements.KEY_PARAM_SUFFIX);
    }
 }

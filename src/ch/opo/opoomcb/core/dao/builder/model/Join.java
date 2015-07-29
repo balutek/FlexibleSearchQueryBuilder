@@ -12,18 +12,18 @@ package ch.opo.opoomcb.core.dao.builder.model;
  */
 public class Join
 {
-   protected Column column;
+   private Table table;
 
    protected On on;
 
-   public Join(Column column)
+   public Join(Table table)
    {
-      this.column = column;
+      this.table = table;
    }
 
-   public Column getColumn()
+   public Table getTable()
    {
-      return column;
+      return table;
    }
 
    public void setOn(On on)
