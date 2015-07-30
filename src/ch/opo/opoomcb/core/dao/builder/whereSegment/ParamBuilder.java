@@ -7,6 +7,8 @@
  */
 package ch.opo.opoomcb.core.dao.builder.whereSegment;
 
+import ch.opo.opoomcb.core.dao.builder.model.QueryModel;
+
 /**
  * @author Paweł Łabuda
  */
@@ -14,9 +16,9 @@ public class ParamBuilder
 {
    private WhereSegmentBuilder builder;
 
-   public ParamBuilder(StringBuilder headerQuery)
+   public ParamBuilder(QueryModel queryModel)
    {
-      builder = new WhereSegmentBuilder(headerQuery, this);
+      builder = new WhereSegmentBuilder(queryModel, this);
    }
 
    public OperatorBuilder isNull(String param)

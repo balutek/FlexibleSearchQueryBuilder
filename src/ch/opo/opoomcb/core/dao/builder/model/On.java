@@ -24,6 +24,11 @@ public class On
       operationList = new ArrayList<Operation>();
    }
 
+   public On(List<Operation> operationList)
+   {
+      this.operationList = operationList;
+   }
+
    public void addOperation(Operation operation)
    {
       operationList.add(operation);

@@ -41,7 +41,7 @@ public class QueryRenderer
    private String build()
    {
       resultQuery = new StringBuilder();
-      renderSelect(model.getSelect());
+      renderSelect(model.getLastSelect()); // todo change this
       return resultQuery.toString();
    }
 

@@ -59,6 +59,15 @@ public class Select
       return fromList;
    }
 
+   public From getLastFrom()
+   {
+      if (fromList.size() > 0)
+      {
+         return fromList.get(fromList.size() - 1);
+      }
+      return null;
+   }
+
    public Where getWhere()
    {
       return where;

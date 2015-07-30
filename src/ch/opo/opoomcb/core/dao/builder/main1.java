@@ -16,9 +16,11 @@ public class main1
    {
       System.out.println(
          QueryBuilder.selectDistinct().from("p", "Product")
-                 .join("w", "Category")
+                 .leftJoin("w", "Category")
                  .on()
                  .equals("p", "Product", "w", "Category")
+                 .and()
+                 .isNotNull("p", "Product")
                  .where()
                  .openBracket()
                  .like("www", "lala")

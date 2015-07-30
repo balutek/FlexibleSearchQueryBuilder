@@ -15,7 +15,7 @@ import java.util.Map;
  */
 public class QueryModel
 {
-   private Select select;
+   private Select select; //should change to List, and add Logic Operation List
 
    private Map<String, Object> queryParams;
 
@@ -24,9 +24,19 @@ public class QueryModel
       this.queryParams = new HashMap<String, Object>();
    }
 
-   public Select getSelect()
+   public Select getLastSelect()
    {
       return select;
+   }
+
+   public From getLastFrom()
+   {
+      return getLastSelect().getLastFrom();
+   }
+
+   public Where getLastWhere()
+   {
+      return getLastSelect().getWhere();
    }
 
    public void setSelect(Select select)
@@ -42,5 +52,20 @@ public class QueryModel
    public void setQueryParams(Map<String, Object> queryParams)
    {
       this.queryParams = queryParams;
+   }
+
+   public void putQueryParam(String key, Object value)
+   {
+      queryParams.put(key, value);
+   }
+
+   public String createKey(String param)
+   {
+      int i = 0;
+      while (queryParams.containsKey(param + i))
+      {
+         i++;
+      }
+      return param + i;
    }
 }

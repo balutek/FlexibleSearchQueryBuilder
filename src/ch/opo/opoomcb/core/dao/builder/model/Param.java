@@ -13,4 +13,14 @@ package ch.opo.opoomcb.core.dao.builder.model;
 public class Param
 {
    private String name;
+
+   public Param(String name)
+   {
+      this.name = name;
+   }
+
+   public String getName()
+   {
+      return name;
+   }
 }
