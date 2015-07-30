@@ -7,12 +7,7 @@
  */
 package ch.opo.opoomcb.core.dao.builder.render;
 
-import ch.opo.opoomcb.core.dao.builder.model.Column;
-import ch.opo.opoomcb.core.dao.builder.model.From;
-import ch.opo.opoomcb.core.dao.builder.model.Join;
-import ch.opo.opoomcb.core.dao.builder.model.QueryModel;
-import ch.opo.opoomcb.core.dao.builder.model.Select;
-import ch.opo.opoomcb.core.dao.builder.model.Table;
+import ch.opo.opoomcb.core.dao.builder.model.*;
 import org.apache.commons.lang.StringUtils;
 
 import java.util.Iterator;
@@ -86,6 +81,7 @@ public class QueryRenderer
       Table fromTable = from.getTable();
       resultQuery.append(FROM).append(KEY_PARAM_PREFIX);
       renderTable(fromTable);
+      resultQuery.append(SPACE);
       for (Join join : from.getJoinList())
       {
          renderJoin(join);
@@ -105,8 +101,15 @@ public class QueryRenderer
 
    private void renderJoin(Join join)
    {
-      resultQuery.append(SPACE).append(JOIN).append(SPACE);
+      resultQuery.append(JOIN).append(SPACE);
       renderTable(join.getTable());
+      resultQuery.append(SPACE);
+      renderOn(join.getOn());
+   }
+
+   private void renderOn(On on)
+   {
+      resultQuery.append(ON).append(SPACE);
    }
 
 }
