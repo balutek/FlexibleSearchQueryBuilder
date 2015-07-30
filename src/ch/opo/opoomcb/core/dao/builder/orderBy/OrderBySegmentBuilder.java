@@ -7,32 +7,22 @@
  */
 package ch.opo.opoomcb.core.dao.builder.orderBy;
 
-import ch.opo.opoomcb.core.dao.builder.constants.QueryElements;
+import ch.opo.opoomcb.core.dao.builder.model.QueryModel;
 
 /**
  * @author Paweł Łabuda
  */
-public class OrderBySegmentBuilder
+public class OrderBySegmentBuilder // todo hire should be DESC and ASC
 {
-   private StringBuilder query;
+   private QueryModel queryModel;
 
-   public OrderBySegmentBuilder(StringBuilder query, String order)
+   public OrderBySegmentBuilder(QueryModel queryModel)
    {
-      this.query = query;
-
-      insertOrderBy(order);
+      this.queryModel = queryModel;
    }
 
-   public String build()
+   public QueryModel getQuery()
    {
-      return query.toString();
-   }
-
-   private void insertOrderBy(String order)
-   {
-      query.append(QueryElements.ORDER_BY)
-         .append(QueryElements.KEY_PARAM_PREFIX)
-         .append(order)
-         .append(QueryElements.KEY_PARAM_SUFFIX);
+      return queryModel;
    }
 }

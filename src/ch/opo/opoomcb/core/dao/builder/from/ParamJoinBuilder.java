@@ -157,18 +157,13 @@ public class ParamJoinBuilder
       return builder.getOperatorJoinBuilder();
    }
 
-
-//   public OperatorJoinBuilder isIn(String param, Object... values)
-//   {
-//      builder.insertRestrictionIn(param, values);
-//      return builder.getOperatorJoinBuilder();
-//   }
-//
-//   public OperatorJoinBuilder isIn(String param, Collection values)
-//   {
-//      builder.insertRestrictionIn(param, values);
-//      return builder.getOperatorJoinBuilder();
-//   }
+   public OperatorJoinBuilder isIn(String alias, String column, Object param)
+   {
+      String key = creteKey(column);
+      Operation operation = new In(new Column(column, alias), new Param(key));
+      builder.insertOperationWithParam(operation, key, param);
+      return builder.getOperatorJoinBuilder();
+   }
 
    public ParamJoinBuilder openBracket()
    {

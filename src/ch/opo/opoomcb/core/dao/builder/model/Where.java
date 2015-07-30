@@ -24,9 +24,9 @@ public class Where implements Renderable
       operationList = new ArrayList<Operation>();
    }
 
-   public void addOperation(Operation operation)
+   public void setOperationList(List<Operation> operationList)
    {
-      operationList.add(operation);
+      this.operationList = operationList;
    }
 
    public List<Operation> getOperationList()

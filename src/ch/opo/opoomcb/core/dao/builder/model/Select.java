@@ -26,6 +26,8 @@ public class Select implements Renderable
 
    private Where where;
 
+   private OrderBy orderBy;
+
    public Select()
    {
       columnList = new ArrayList<Column>();
@@ -79,6 +81,16 @@ public class Select implements Renderable
    public void setWhere(Where where)
    {
       this.where = where;
+   }
+
+   public OrderBy getOrderBy()
+   {
+      return orderBy;
+   }
+
+   public void setOrderBy(OrderBy orderBy)
+   {
+      this.orderBy = orderBy;
    }
 
    @Override
