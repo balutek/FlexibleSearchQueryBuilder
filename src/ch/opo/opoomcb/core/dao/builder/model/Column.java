@@ -11,7 +11,6 @@ package ch.opo.opoomcb.core.dao.builder.model;
  * @author Paweł Łabuda
  */
 public class Column
-
 {
    private String name;
 

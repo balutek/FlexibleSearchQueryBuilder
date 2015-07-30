@@ -35,6 +35,15 @@ public class From
       joinList.add(join);
    }
 
+   public Join getLastJoin()
+   {
+      if (joinList.size() > 0)
+      {
+         return joinList.get(joinList.size() - 1);
+      }
+      return null;
+   }
+
    public List<Join> getJoinList()
    {
       return joinList;

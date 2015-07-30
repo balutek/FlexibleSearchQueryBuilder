@@ -7,6 +7,8 @@
  */
 package ch.opo.opoomcb.core.dao.builder.whereSegment;
 
+import ch.opo.opoomcb.core.dao.builder.model.QueryModel;
+
 /**
  * @author Paweł Łabuda
  */
@@ -14,9 +16,9 @@ public class ParamBuilder
 {
    private WhereSegmentBuilder builder;
 
-   public ParamBuilder(StringBuilder headerQuery)
+   public ParamBuilder(QueryModel queryModel)
    {
-      builder = new WhereSegmentBuilder(headerQuery, this);
+      builder = new WhereSegmentBuilder(queryModel, this);
    }
 
    public OperatorBuilder isNull(String param)
@@ -31,25 +33,25 @@ public class ParamBuilder
       return builder.getOperatorBuilder();
    }
 
-   public OperatorBuilder lesserThen(String param, Object value)
+   public OperatorBuilder lessThan(String param, Object value)
    {
       builder.insertRestrictionWithOperator(param, value, "<");
       return builder.getOperatorBuilder();
    }
 
-   public OperatorBuilder lesserOrEqualsThen(String param, Object value)
+   public OperatorBuilder lessOrEqualsThan(String param, Object value)
    {
       builder.insertRestrictionWithOperator(param, value, "<=");
       return builder.getOperatorBuilder();
    }
 
-   public OperatorBuilder greaterThen(String param, Object value)
+   public OperatorBuilder greaterThan(String param, Object value)
    {
       builder.insertRestrictionWithOperator(param, value, ">");
       return builder.getOperatorBuilder();
    }
 
-   public OperatorBuilder greaterOrEqualsThen(String param, Object value)
+   public OperatorBuilder greaterOrEqualsThan(String param, Object value)
    {
       builder.insertRestrictionWithOperator(param, value, ">=");
       return builder.getOperatorBuilder();

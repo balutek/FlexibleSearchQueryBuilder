@@ -1,25 +1,19 @@
-/*
- * OPO-Net® Online-Shop
- * Copyright (c) 2000-2015 OPO Oeschger AG
- * All rights reserved.
- *
- * This software is the confidential and proprietary information of OPO.
- */
-package ch.opo.opoomcb.core.dao.builder.model.operation.compare;
+package ch.opo.opoomcb.core.dao.builder.model.operation.compare.param;
 
 import ch.opo.opoomcb.core.dao.builder.model.Column;
 import ch.opo.opoomcb.core.dao.builder.model.Param;
+import ch.opo.opoomcb.core.dao.builder.model.operation.compare.CompareOperation;
 
 /**
  * @author Paweł Łabuda
  */
-public class EqualsParam extends CompareOperation
+public abstract class CompareColumnAndParam extends CompareOperation
 {
    private Column column;
 
    private Param parameter;
 
-   public EqualsParam(Column column, Param parameter)
+   public CompareColumnAndParam(Column column, Param parameter)
    {
       this.column = column;
       this.parameter = parameter;

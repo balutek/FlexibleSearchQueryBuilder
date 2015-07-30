@@ -8,6 +8,8 @@
 package ch.opo.opoomcb.core.dao.builder.whereSegment;
 
 import ch.opo.opoomcb.core.dao.builder.constants.QueryElements;
+import ch.opo.opoomcb.core.dao.builder.model.QueryModel;
+import ch.opo.opoomcb.core.dao.builder.model.Select;
 import ch.opo.opoomcb.core.dao.builder.orderBy.OrderBySegmentBuilder;
 
 import java.util.HashMap;
@@ -24,16 +26,18 @@ public class WhereSegmentBuilder
 
    private OrderBySegmentBuilder orderByBuilder;
 
+   private QueryModel queryModel;
+
    private StringBuilder query;
 
    private Map<String, Object> paramMap;
 
    private int bracketCount = 0;
 
-   public WhereSegmentBuilder(StringBuilder headerQuery, ParamBuilder paramBuilder)
+   public WhereSegmentBuilder(QueryModel queryModel, ParamBuilder paramBuilder)
    {
-      query = headerQuery
-         .append(QueryElements.WHERE);
+      this.queryModel = queryModel;
+//         .append(QueryElements.WHERE);
       this.paramBuilder = paramBuilder;
       this.operatorBuilder = new OperatorBuilder(this);
       paramMap = new HashMap<String, Object>();

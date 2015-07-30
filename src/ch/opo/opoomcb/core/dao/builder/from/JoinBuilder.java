@@ -7,32 +7,32 @@
  */
 package ch.opo.opoomcb.core.dao.builder.from;
 
-import ch.opo.opoomcb.core.dao.builder.constants.QueryElements;
+import ch.opo.opoomcb.core.dao.builder.model.QueryModel;
 
 /**
  * @author Paweł Łabuda
  */
 public class JoinBuilder
 {
-    private StringBuilder query;
+//    private StringBuilder query;
 
-    private String alias;
+   private QueryModel queryModel;
 
-    private String typecode;
+   private String alias;
 
-    public JoinBuilder(StringBuilder query, String alias, String typecode)
-    {
-        query.append(" JOIN ")
-                .append(typecode)
-                .append(QueryElements.AS)
-                .append(alias);
-        this.query = query;
-        this.alias = alias;
-        this.typecode = typecode;
-    }
+   private String typecode;
 
-    public ParamJoinBuilder on()
-    {
-        return new ParamJoinBuilder(query);
-    }
+   public JoinBuilder(QueryModel queryModel)
+   {
+//        query.append(" JOIN ")
+//                .append(typecode)
+//                .append(QueryElements.AS)
+//                .append(alias);
+      this.queryModel = queryModel;
+   }
+
+   public ParamJoinBuilder on()
+   {
+      return new ParamJoinBuilder(queryModel);
+   }
 }

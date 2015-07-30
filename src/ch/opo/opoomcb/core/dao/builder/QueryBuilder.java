@@ -7,85 +7,99 @@
  */
 package ch.opo.opoomcb.core.dao.builder;
 
-import ch.opo.opoomcb.core.dao.builder.constants.QueryElements;
 import ch.opo.opoomcb.core.dao.builder.from.FromSegmentBuilder;
-import ch.opo.opoomcb.core.dao.builder.model.Select;
+import ch.opo.opoomcb.core.dao.builder.model.*;
+import org.apache.commons.lang.StringUtils;
 
 /**
  * @author Paweł Łabuda
  */
 public class QueryBuilder
 {
-   private String SELECT_ITEM = "pk";
+    private String SELECT_ITEM = "pk";
 
-   private boolean distinct;
+//    private boolean distinct;
 
-   private Select SELECT;
+    private QueryModel queryModel;
 
-   private QueryBuilder(String param, boolean distinct)
-   {
-      this.distinct = distinct;
+    private QueryBuilder(String param, String alias, boolean distinct)
+    {
+        if (StringUtils.isNotBlank(param))
+        {
+            SELECT_ITEM = param; //todo to chyba nie powinno tu pyc
+        }
 
-//      if (StringUtils.isNotBlank(param))//todo
-      if (param != null)
-      {
-         SELECT_ITEM = param;
-      }
-      SELECT = new Select();
-      SELECT.setDistinct(distinct);
-   }
+        queryModel = new QueryModel();
 
-   public static QueryBuilder select()
-   {
-      return new QueryBuilder(null, false);
-   }
+        Select select = new Select();
+        select.setDistinct(distinct);
+        select.addColumn(new Column(param, alias));
+        queryModel.setSelect(select);
+    }
 
-   public static QueryBuilder select(String param)
-   {
-      return new QueryBuilder(param, false);
-   }
+    public static QueryBuilder select()
+    {
+        return new QueryBuilder(null, null, false);
+    }
 
-   public static QueryBuilder selectDistinct()
-   {
-      return new QueryBuilder(null, true);
-   }
+    public static QueryBuilder select(String param)
+    {
+        return new QueryBuilder(param, null, false);
+    }
 
-   public static QueryBuilder selectDistinct(String param)
-   {
-      return new QueryBuilder(param, true);
-   }
+    public static QueryBuilder select(String alias, String param)
+    {
+        return new QueryBuilder(param, alias, true);
+    }
 
-   public FromSegmentBuilder from(String from)
-   {
-      return new FromSegmentBuilder(buildQuery(null), from);
-   }
+    public static QueryBuilder selectDistinct()
+    {
+        return new QueryBuilder(null, null, true);
+    }
 
-   public FromSegmentBuilder from(String alias, String from)
-   {
-      return new FromSegmentBuilder(buildQuery(alias), alias, from);
-   }
+    public static QueryBuilder selectDistinct(String param)
+    {
+        return new QueryBuilder(param, null, true);
+    }
 
-   private StringBuilder buildQuery(String alias)
-   {
-      StringBuilder query = new StringBuilder()
-         .append(QueryElements.SELECT);
+    public static QueryBuilder selectDistinct(String alias, String param)
+    {
+        return new QueryBuilder(param, alias, true);
+    }
 
-      if (distinct)
-      {
-         query.append(QueryElements.DISTINCT);
-      }
-      query.append(QueryElements.KEY_PARAM_PREFIX);
+    public FromSegmentBuilder from(String from)
+    {
+        queryModel.getLastSelect().addFrom(new From(new Table(from, null)));
+        return new FromSegmentBuilder(queryModel);
+    }
 
-      if (alias != null)
-      {
-         query.append(alias)
-            .append(".");
-      }
-      query.append(SELECT_ITEM)
-         .append(QueryElements.KEY_PARAM_SUFFIX)
-         .append(QueryElements.FROM)
-         .append(QueryElements.KEY_PARAM_PREFIX);
+    public FromSegmentBuilder from(String alias, String from)
+    {
+        queryModel.getLastSelect().addFrom(new From(new Table(from, alias)));
+        return new FromSegmentBuilder(queryModel);
+    }
 
-      return query;
-   }
+//   private StringBuilder buildQuery(String alias)
+//   {
+//      StringBuilder query = new StringBuilder()
+//         .append(QueryElements.SELECT);
+//
+//      if (distinct)
+//      {
+//         query.append(QueryElements.DISTINCT);
+//      }
+//      query.append(QueryElements.KEY_PARAM_PREFIX);
+//
+//      if (alias != null)
+//      {
+//         query.append(alias)
+//            .append(".");
+//      }
+//      query.append(SELECT_ITEM)
+//         .append(QueryElements.KEY_PARAM_SUFFIX)
+//         .append(QueryElements.FROM)
+//         .append(QueryElements.KEY_PARAM_PREFIX);
+//
+//      return query;
+//   }
 }
