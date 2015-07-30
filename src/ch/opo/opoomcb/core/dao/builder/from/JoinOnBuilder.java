@@ -4,7 +4,7 @@ import ch.opo.opoomcb.core.dao.builder.model.On;
 import ch.opo.opoomcb.core.dao.builder.model.QueryModel;
 import ch.opo.opoomcb.core.dao.builder.model.operation.Bracket;
 import ch.opo.opoomcb.core.dao.builder.model.operation.Operation;
-import ch.opo.opoomcb.core.dao.builder.whereSegment.ParamBuilder;
+import ch.opo.opoomcb.core.dao.builder.whereSegment.CompareWhereBuilder;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -16,19 +16,19 @@ public class JoinOnBuilder
 {
    private QueryModel queryModel;
 
-   private ParamJoinBuilder paramJoinBuilder;
+   private CompareJoinBuilder compareJoinBuilder;
 
-   private OperatorJoinBuilder operatorJoinBuilder;
+   private BitwiseJoinBuilder bitwiseJoinBuilder;
 
    private List<Operation> operationList;
 
    private List<Bracket> bracketList;
 
-   public JoinOnBuilder(QueryModel queryModel, ParamJoinBuilder paramJoinBuilder)
+   public JoinOnBuilder(QueryModel queryModel, CompareJoinBuilder compareJoinBuilder)
    {
       this.queryModel = queryModel;
-      this.paramJoinBuilder = paramJoinBuilder;
-      this.operatorJoinBuilder = new OperatorJoinBuilder(this);
+      this.compareJoinBuilder = compareJoinBuilder;
+      this.bitwiseJoinBuilder = new BitwiseJoinBuilder(this);
       operationList = new ArrayList<Operation>();
       bracketList = new ArrayList<Bracket>();
    }
@@ -66,17 +66,17 @@ public class JoinOnBuilder
       }
    }
 
-   public ParamJoinBuilder getParamJoinBuilder()
+   public CompareJoinBuilder getCompareJoinBuilder()
    {
-      return paramJoinBuilder;
+      return compareJoinBuilder;
    }
 
-   public OperatorJoinBuilder getOperatorJoinBuilder()
+   public BitwiseJoinBuilder getBitwiseJoinBuilder()
    {
-      return operatorJoinBuilder;
+      return bitwiseJoinBuilder;
    }
 
-   public ParamBuilder getParamBuilder()
+   public CompareWhereBuilder getCompareWhereBuilder()
    {
       queryModel
          .getLastFrom()
@@ -84,7 +84,7 @@ public class JoinOnBuilder
          .setOn(
             new On(operationList)
          );
-      return new ParamBuilder(queryModel);
+      return new CompareWhereBuilder(queryModel);
    }
 
    public String createKey(String name)

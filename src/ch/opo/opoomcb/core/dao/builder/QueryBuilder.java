@@ -16,90 +16,64 @@ import org.apache.commons.lang.StringUtils;
  */
 public class QueryBuilder
 {
-    private String SELECT_ITEM = "pk";
+   private String SELECT_ITEM = "pk";
 
-//    private boolean distinct;
+   private QueryModel queryModel;
 
-    private QueryModel queryModel;
+   private QueryBuilder(String param, String alias, boolean distinct)
+   {
+      if (StringUtils.isNotBlank(param))
+      {
+         SELECT_ITEM = param; //todo to chyba nie powinno tu pyc
+      }
 
-    private QueryBuilder(String param, String alias, boolean distinct)
-    {
-        if (StringUtils.isNotBlank(param))
-        {
-            SELECT_ITEM = param; //todo to chyba nie powinno tu pyc
-        }
+      queryModel = new QueryModel();
 
-        queryModel = new QueryModel();
+      Select select = new Select();
+      select.setDistinct(distinct);
+      select.addColumn(new Column(param, alias));
+      queryModel.setSelect(select);
+   }
 
-        Select select = new Select();
-        select.setDistinct(distinct);
-        select.addColumn(new Column(param, alias));
-        queryModel.setSelect(select);
-    }
+   public static QueryBuilder select()
+   {
+      return new QueryBuilder(null, null, false);
+   }
 
-    public static QueryBuilder select()
-    {
-        return new QueryBuilder(null, null, false);
-    }
+   public static QueryBuilder select(String param)
+   {
+      return new QueryBuilder(param, null, false);
+   }
 
-    public static QueryBuilder select(String param)
-    {
-        return new QueryBuilder(param, null, false);
-    }
+   public static QueryBuilder select(String alias, String param)
+   {
+      return new QueryBuilder(param, alias, true);
+   }
 
-    public static QueryBuilder select(String alias, String param)
-    {
-        return new QueryBuilder(param, alias, true);
-    }
+   public static QueryBuilder selectDistinct()
+   {
+      return new QueryBuilder(null, null, true);
+   }
 
-    public static QueryBuilder selectDistinct()
-    {
-        return new QueryBuilder(null, null, true);
-    }
+   public static QueryBuilder selectDistinct(String param)
+   {
+      return new QueryBuilder(param, null, true);
+   }
 
-    public static QueryBuilder selectDistinct(String param)
-    {
-        return new QueryBuilder(param, null, true);
-    }
+   public static QueryBuilder selectDistinct(String alias, String param)
+   {
+      return new QueryBuilder(param, alias, true);
+   }
 
-    public static QueryBuilder selectDistinct(String alias, String param)
-    {
-        return new QueryBuilder(param, alias, true);
-    }
+   public FromSegmentBuilder from(String from)
+   {
+      queryModel.getLastSelect().addFrom(new From(new Table(from, null)));
+      return new FromSegmentBuilder(queryModel);
+   }
 
-    public FromSegmentBuilder from(String from)
-    {
-        queryModel.getLastSelect().addFrom(new From(new Table(from, null)));
-        return new FromSegmentBuilder(queryModel);
-    }
-
-    public FromSegmentBuilder from(String alias, String from)
-    {
-        queryModel.getLastSelect().addFrom(new From(new Table(from, alias)));
-        return new FromSegmentBuilder(queryModel);
-    }
-
-//   private StringBuilder buildQuery(String alias)
-//   {
-//      StringBuilder query = new StringBuilder()
-//         .append(QueryElements.SELECT);
-//
-//      if (distinct)
-//      {
-//         query.append(QueryElements.DISTINCT);
-//      }
-//      query.append(QueryElements.KEY_PARAM_PREFIX);
-//
-//      if (alias != null)
-//      {
-//         query.append(alias)
-//            .append(".");
-//      }
-//      query.append(SELECT_ITEM)
-//         .append(QueryElements.KEY_PARAM_SUFFIX)
-//         .append(QueryElements.FROM)
-//         .append(QueryElements.KEY_PARAM_PREFIX);
-//
-//      return query;
-//   }
+   public FromSegmentBuilder from(String alias, String from)
+   {
+      queryModel.getLastSelect().addFrom(new From(new Table(from, alias)));
+      return new FromSegmentBuilder(queryModel);
+   }
 }

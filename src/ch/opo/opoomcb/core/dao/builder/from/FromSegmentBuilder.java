@@ -7,31 +7,20 @@
  */
 package ch.opo.opoomcb.core.dao.builder.from;
 
-import ch.opo.opoomcb.core.dao.builder.constants.QueryElements;
 import ch.opo.opoomcb.core.dao.builder.model.*;
-import ch.opo.opoomcb.core.dao.builder.whereSegment.ParamBuilder;
+import ch.opo.opoomcb.core.dao.builder.whereSegment.CompareWhereBuilder;
 
 /**
  * @author Paweł Łabuda
  */
 public class FromSegmentBuilder
 {
-//   private StringBuilder query;
-
    private QueryModel queryModel;
 
    public FromSegmentBuilder(QueryModel queryModel)
    {
       this.queryModel = queryModel;
-//      this.query = query;
-//      insertSimpleFrom(from);
    }
-
-//   public FromSegmentBuilder(StringBuilder query, String alias, String from)
-//   {
-//      this.query = query;
-//      insertSimpleFrom(alias, from);
-//   }
 
    public JoinBuilder join(String alias, String typecode)
    {
@@ -51,27 +40,8 @@ public class FromSegmentBuilder
       return new JoinBuilder(queryModel);
    }
 
-   public ParamBuilder where()
+   public CompareWhereBuilder where()
    {
-      return new ParamBuilder(queryModel);
+      return new CompareWhereBuilder(queryModel);
    }
-
-//   public String build()
-//   {
-//      return query.toString();
-//   }
-//
-//   private void insertSimpleFrom(String alias, String from)
-//   {
-//      query.append(from)
-//         .append(QueryElements.AS)
-//         .append(alias)
-//         .append(QueryElements.KEY_PARAM_SUFFIX);
-//   }
-//
-//   private void insertSimpleFrom(String from)
-//   {
-//      query.append(from)
-//         .append(QueryElements.KEY_PARAM_SUFFIX);
-//   }
 }

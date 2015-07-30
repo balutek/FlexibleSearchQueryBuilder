@@ -7,7 +7,6 @@
  */
 package ch.opo.opoomcb.core.dao.builder.whereSegment;
 
-import ch.opo.opoomcb.core.dao.builder.constants.QueryElements;
 import ch.opo.opoomcb.core.dao.builder.model.QueryModel;
 import ch.opo.opoomcb.core.dao.builder.model.operation.bitwise.And;
 import ch.opo.opoomcb.core.dao.builder.model.operation.bitwise.Or;
@@ -16,11 +15,11 @@ import ch.opo.opoomcb.core.dao.builder.orderBy.OrderBySegmentBuilder;
 /**
  * @author Paweł Łabuda
  */
-public class OperatorBuilder
+public class BitwiseWhereBuilder
 {
    private WhereSegmentBuilder builder;
 
-   public OperatorBuilder(WhereSegmentBuilder builder)
+   public BitwiseWhereBuilder(WhereSegmentBuilder builder)
    {
       this.builder = builder;
    }
@@ -35,21 +34,21 @@ public class OperatorBuilder
       return builder.getOrderByBuilder(alias, column);
    }
 
-   public ParamBuilder and()
+   public CompareWhereBuilder and()
    {
       builder.insertOperation(new And());
-      return builder.getParamBuilder();
+      return builder.getCompareWhereBuilder();
    }
 
-   public ParamBuilder or()
+   public CompareWhereBuilder or()
    {
       builder.insertOperation(new Or());
-      return builder.getParamBuilder();
+      return builder.getCompareWhereBuilder();
    }
 
-   public OperatorBuilder closeBracket()
+   public BitwiseWhereBuilder closeBracket()
    {
       builder.closeBracket();
-      return builder.getOperatorBuilder();
+      return builder.getBitwiseWhereBuilder();
    }
 }

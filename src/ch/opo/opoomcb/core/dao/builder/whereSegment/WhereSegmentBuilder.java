@@ -22,29 +22,23 @@ import java.util.List;
  */
 public class WhereSegmentBuilder
 {
-   private ParamBuilder paramBuilder;
+   private CompareWhereBuilder compareWhereBuilder;
 
-   private OperatorBuilder operatorBuilder;
+   private BitwiseWhereBuilder bitwiseWhereBuilder;
 
    private OrderBySegmentBuilder orderByBuilder;
 
    private QueryModel queryModel;
 
-//   private StringBuilder query;
-//
-//   private Map<String, Object> paramMap;
-
    private List<Operation> operationList;
 
    private List<Bracket> bracketList;
 
-   public WhereSegmentBuilder(QueryModel queryModel, ParamBuilder paramBuilder)
+   public WhereSegmentBuilder(QueryModel queryModel, CompareWhereBuilder compareWhereBuilder)
    {
       this.queryModel = queryModel;
-//         .append(QueryElements.WHERE);
-      this.paramBuilder = paramBuilder;
-      this.operatorBuilder = new OperatorBuilder(this);
-//      paramMap = new HashMap<String, Object>();
+      this.compareWhereBuilder = compareWhereBuilder;
+      this.bitwiseWhereBuilder = new BitwiseWhereBuilder(this);
       operationList = new ArrayList<Operation>();
       bracketList = new ArrayList<Bracket>();
 
@@ -94,14 +88,14 @@ public class WhereSegmentBuilder
       return queryModel.createKey(name);
    }
 
-   public ParamBuilder getParamBuilder()
+   public CompareWhereBuilder getCompareWhereBuilder()
    {
-      return paramBuilder;
+      return compareWhereBuilder;
    }
 
-   public OperatorBuilder getOperatorBuilder()
+   public BitwiseWhereBuilder getBitwiseWhereBuilder()
    {
-      return operatorBuilder;
+      return bitwiseWhereBuilder;
    }
 
    public OrderBySegmentBuilder getOrderByBuilder(String alias, String column)

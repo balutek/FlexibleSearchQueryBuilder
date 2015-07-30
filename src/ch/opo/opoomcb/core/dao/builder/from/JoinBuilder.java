@@ -21,8 +21,8 @@ public class JoinBuilder
       this.queryModel = queryModel;
    }
 
-   public ParamJoinBuilder on()
+   public CompareJoinBuilder on()
    {
-      return new ParamJoinBuilder(queryModel);
+      return new CompareJoinBuilder(queryModel);
    }
 }
