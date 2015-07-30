@@ -13,7 +13,6 @@ import ch.opo.opoomcb.core.dao.builder.model.Join;
 import ch.opo.opoomcb.core.dao.builder.model.QueryModel;
 import ch.opo.opoomcb.core.dao.builder.model.Select;
 import ch.opo.opoomcb.core.dao.builder.model.Table;
-import javafx.scene.control.Tab;
 import org.apache.commons.lang.StringUtils;
 
 import java.util.Iterator;
