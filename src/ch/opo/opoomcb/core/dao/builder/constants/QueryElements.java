@@ -15,6 +15,7 @@ public enum QueryElements
    SPACE(" "),
    SELECT("SELECT"),
    FROM("FROM"),
+   JOIN("JOIN"),
    WHERE("WHERE"),
    ORDER_BY("ORDER BY"),
    AND("AND"),

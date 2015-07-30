@@ -85,14 +85,8 @@ public class QueryRenderer
    private void renderFrom(From from)
    {
       Table fromTable = from.getTable();
-      resultQuery.append(KEY_PARAM_PREFIX);
-      resultQuery.append(fromTable.getName());
-
-      String fromTableAlias = fromTable.getAlias();
-      if (StringUtils.isNotBlank(fromTableAlias))
-      {
-         resultQuery.append(SPACE).append(AS).append(SPACE).append(fromTableAlias);
-      }
+      resultQuery.append(FROM).append(KEY_PARAM_PREFIX);
+      renderTable(fromTable);
       for (Join join : from.getJoinList())
       {
          renderJoin(join);
@@ -100,8 +94,20 @@ public class QueryRenderer
       resultQuery.append(KEY_PARAM_SUFFIX);
    }
 
+   private void renderTable(Table table)
+   {
+      resultQuery.append(table.getName());
+      String fromTableAlias = table.getAlias();
+      if (StringUtils.isNotBlank(fromTableAlias))
+      {
+         resultQuery.append(SPACE).append(AS).append(SPACE).append(fromTableAlias);
+      }
+   }
+
    private void renderJoin(Join join)
    {
+      resultQuery.append(SPACE).append(JOIN).append(SPACE);
+      renderTable(join.getTable());
    }
 
 }
