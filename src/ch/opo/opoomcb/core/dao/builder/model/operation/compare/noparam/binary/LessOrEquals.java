@@ -5,9 +5,9 @@ import ch.opo.opoomcb.core.dao.builder.model.Column;
 /**
  * @author Paweł Łabuda
  */
-public class LesserOrEquals extends CompareTwoColumns
+public class LessOrEquals extends CompareTwoColumns
 {
-   public LesserOrEquals(Column firstColumn, Column secondColumn)
+   public LessOrEquals(Column firstColumn, Column secondColumn)
    {
       super(firstColumn, secondColumn);
    }

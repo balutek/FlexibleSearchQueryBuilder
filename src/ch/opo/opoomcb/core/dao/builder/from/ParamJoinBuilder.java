@@ -35,37 +35,37 @@ public class ParamJoinBuilder
       return builder.getOperatorJoinBuilder();
    }
 
-   public OperatorJoinBuilder lesserThen(String alias, String column, Object param)
+   public OperatorJoinBuilder lessThan(String alias, String column, Object param)
    {
       String key = creteKey(column);
-      Operation operation = new LesserParam(new Column(column, alias), new Param(key));
+      Operation operation = new LessParam(new Column(column, alias), new Param(key));
       builder.insertOperationWithParam(operation, key, param);
       return builder.getOperatorJoinBuilder();
    }
 
-   public OperatorJoinBuilder lesserThen(String alias1, String column1, String alias2, String column2)
+   public OperatorJoinBuilder lessThan(String alias1, String column1, String alias2, String column2)
    {
-      Operation operation = new Lesser(new Column(column1, alias1), new Column(column2, alias2));
+      Operation operation = new Less(new Column(column1, alias1), new Column(column2, alias2));
       builder.insertOperation(operation);
       return builder.getOperatorJoinBuilder();
    }
 
-   public OperatorJoinBuilder lesserOrEqualsThen(String alias, String column, Object param)
+   public OperatorJoinBuilder lessOrEqualsThan(String alias, String column, Object param)
    {
       String key = creteKey(column);
-      Operation operation = new LesserOrEqualsParam(new Column(column, alias), new Param(key));
+      Operation operation = new LessOrEqualsParam(new Column(column, alias), new Param(key));
       builder.insertOperationWithParam(operation, key, param);
       return builder.getOperatorJoinBuilder();
    }
 
-   public OperatorJoinBuilder lesserOrEqualsThen(String alias1, String column1, String alias2, String column2)
+   public OperatorJoinBuilder lessOrEqualsThan(String alias1, String column1, String alias2, String column2)
    {
-      Operation operation = new LesserOrEquals(new Column(column1, alias1), new Column(column2, alias2));
+      Operation operation = new LessOrEquals(new Column(column1, alias1), new Column(column2, alias2));
       builder.insertOperation(operation);
       return builder.getOperatorJoinBuilder();
    }
 
-   public OperatorJoinBuilder greaterThen(String alias, String column, Object param)
+   public OperatorJoinBuilder greaterThan(String alias, String column, Object param)
    {
       String key = creteKey(column);
       Operation operation = new GreaterParam(new Column(column, alias), new Param(key));
@@ -73,14 +73,14 @@ public class ParamJoinBuilder
       return builder.getOperatorJoinBuilder();
    }
 
-   public OperatorJoinBuilder greaterThen(String alias1, String column1, String alias2, String column2)
+   public OperatorJoinBuilder greaterThan(String alias1, String column1, String alias2, String column2)
    {
       Operation operation = new Greater(new Column(column1, alias1), new Column(column2, alias2));
       builder.insertOperation(operation);
       return builder.getOperatorJoinBuilder();
    }
 
-   public OperatorJoinBuilder greaterOrEqualsThen(String alias, String column, Object param)
+   public OperatorJoinBuilder greaterOrEqualsThan(String alias, String column, Object param)
    {
       String key = creteKey(column);
       Operation operation = new GreaterOrEqualsParam(new Column(column, alias), new Param(key));
@@ -88,7 +88,7 @@ public class ParamJoinBuilder
       return builder.getOperatorJoinBuilder();
    }
 
-   public OperatorJoinBuilder greaterOrEqualsThen(String alias1, String column1, String alias2, String column2)
+   public OperatorJoinBuilder greaterOrEqualsThan(String alias1, String column1, String alias2, String column2)
    {
       Operation operation = new GreaterOrEquals(new Column(column1, alias1), new Column(column2, alias2));
       builder.insertOperation(operation);
