@@ -16,4 +16,10 @@ public class RightJoin extends Join
    {
       super(table);
    }
+
+   @Override
+   public void render(StringBuilder builder)
+   {
+      super.render(builder);
+   }
 }

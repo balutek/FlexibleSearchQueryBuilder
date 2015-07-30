@@ -8,12 +8,15 @@
 package ch.opo.opoomcb.core.dao.builder.model;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
+
+import static ch.opo.opoomcb.core.dao.builder.constants.QueryElements.*;
 
 /**
  * @author Paweł Łabuda
  */
-public class Select
+public class Select implements Renderable
 {
    private boolean distinct = false;
 
@@ -76,5 +79,40 @@ public class Select
    public void setWhere(Where where)
    {
       this.where = where;
+   }
+
+   @Override
+   public void render(StringBuilder builder)
+   {
+      builder.append(SELECT).append(SPACE);
+
+      renderColumns(builder);
+
+      builder.append(SPACE).append(FROM);
+
+      Iterator<From> fromIterator = fromList.iterator();
+      while (fromIterator.hasNext())
+      {
+         builder.append(KEY_PARAM_PREFIX);
+         fromIterator.next().render(builder);
+         builder.append(KEY_PARAM_SUFFIX);
+         if (fromIterator.hasNext())
+         {
+            builder.append(RESULTS_SEPARATOR);
+         }
+      }
+   }
+
+   private void renderColumns(StringBuilder builder)
+   {
+      Iterator<Column> columnIterator = columnList.iterator();
+      while (columnIterator.hasNext())
+      {
+         columnIterator.next().render(builder);
+         if (columnIterator.hasNext())
+         {
+            builder.append(RESULTS_SEPARATOR);
+         }
+      }
    }
 }

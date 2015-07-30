@@ -10,7 +10,7 @@ package ch.opo.opoomcb.core.dao.builder.model;
 /**
  * @author Paweł Łabuda
  */
-public class Param
+public class Param implements Renderable
 {
    private String name;
 
@@ -22,5 +22,11 @@ public class Param
    public String getName()
    {
       return name;
+   }
+
+   @Override
+   public void render(StringBuilder builder)
+   {
+
    }
 }

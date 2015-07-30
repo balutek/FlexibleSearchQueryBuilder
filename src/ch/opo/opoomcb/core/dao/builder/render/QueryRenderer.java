@@ -8,9 +8,19 @@
 package ch.opo.opoomcb.core.dao.builder.render;
 
 import ch.opo.opoomcb.core.dao.builder.model.*;
+import ch.opo.opoomcb.core.dao.builder.model.operation.Bracket;
+import ch.opo.opoomcb.core.dao.builder.model.operation.Not;
+import ch.opo.opoomcb.core.dao.builder.model.operation.Operation;
+import ch.opo.opoomcb.core.dao.builder.model.operation.bitwise.And;
+import ch.opo.opoomcb.core.dao.builder.model.operation.bitwise.BitwiseOperation;
+import ch.opo.opoomcb.core.dao.builder.model.operation.bitwise.Or;
+import ch.opo.opoomcb.core.dao.builder.model.operation.compare.CompareOperation;
 import org.apache.commons.lang.StringUtils;
 
+import java.util.HashMap;
 import java.util.Iterator;
+import java.util.List;
+import java.util.Map;
 
 import static ch.opo.opoomcb.core.dao.builder.constants.QueryElements.*;
 
@@ -19,20 +29,18 @@ import static ch.opo.opoomcb.core.dao.builder.constants.QueryElements.*;
  */
 public class QueryRenderer
 {
-   private QueryModel model;
-
-   private StringBuilder resultQuery;
-
-   private QueryRenderer(QueryModel model)
+   private QueryRenderer()
    {
-      this.model = model;
    }
 
-   public static String render(QueryModel model)
+   public static String render(Renderable renderable)
    {
-      return new QueryRenderer(model).build();
+      StringBuilder builder = new StringBuilder();
+      renderable.render(builder);
+      return builder.toString();
    }
 
+   /*
    private String build()
    {
       resultQuery = new StringBuilder();
@@ -110,6 +118,62 @@ public class QueryRenderer
    private void renderOn(On on)
    {
       resultQuery.append(ON).append(SPACE);
+      renderOperationList(on.getOperationList());
    }
 
+   private void renderOperationList(List<Operation> operationList)
+   {
+      for (Operation operation : operationList)
+      {
+         if (operation instanceof BitwiseOperation)
+         {
+            renderBitwiseOperation((BitwiseOperation) operation);
+         }
+         else if (operation instanceof CompareOperation)
+         {
+            renderCompareOperation((CompareOperation) operation);
+         }
+         else if (operation instanceof Bracket)
+         {
+            renderBracket((Bracket) operation);
+         }
+         else if (operation instanceof Not)
+         {
+
+         }
+         resultQuery.append(SPACE);
+      }
+   }
+
+   private void renderBracket(Bracket bracket)
+   {
+
+   }
+
+   private static class Command<T extends Operation>
+   {
+      public void execute(T operation)
+      {
+
+      }
+   }
+
+   private void renderBitwiseOperation(BitwiseOperation bitwiseOperation)
+   {
+      if (bitwiseOperation instanceof And)
+      {
+         resultQuery.append(AND);
+      }
+      else if (bitwiseOperation instanceof Or)
+      {
+         resultQuery.append(OR);
+      }
+   }
+
+   private void renderCompareOperation(CompareOperation compareOperation)
+   {
+
+   }
+
+*/
 }

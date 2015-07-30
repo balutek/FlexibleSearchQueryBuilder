@@ -28,4 +28,10 @@ public abstract class CompareColumnAndParam extends CompareOperation
    {
       return parameter;
    }
+
+   @Override
+   public void render(StringBuilder builder)
+   {
+
+   }
 }

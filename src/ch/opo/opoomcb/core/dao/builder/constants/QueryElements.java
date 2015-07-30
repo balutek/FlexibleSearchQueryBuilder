@@ -15,6 +15,8 @@ public enum QueryElements
    SPACE(" "),
    SELECT("SELECT"),
    FROM("FROM"),
+   LEFT("LEFT"),
+   RIGHT("RIGHT"),
    JOIN("JOIN"),
    WHERE("WHERE"),
    ORDER_BY("ORDER BY"),
@@ -33,9 +35,9 @@ public enum QueryElements
    OPEN_BRACKET("("),
    CLOSE_BRACKET(")");
 
-   public String code;
+   private String code;
 
-   QueryElements(final String code)
+   private QueryElements(final String code)
    {
       this.code = code;
    }

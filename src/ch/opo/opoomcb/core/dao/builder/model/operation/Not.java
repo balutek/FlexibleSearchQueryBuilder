@@ -12,4 +12,9 @@ package ch.opo.opoomcb.core.dao.builder.model.operation;
  */
 public class Not extends Operation
 {
+   @Override
+   public void render(StringBuilder builder)
+   {
+
+   }
 }

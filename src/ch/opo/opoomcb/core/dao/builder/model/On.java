@@ -15,7 +15,7 @@ import java.util.List;
 /**
  * @author Paweł Łabuda
  */
-public class On
+public class On implements Renderable
 {
    protected List<Operation> operationList;
 
@@ -39,4 +39,9 @@ public class On
       return operationList;
    }
 
+   @Override
+   public void render(StringBuilder builder)
+   {
+
+   }
 }

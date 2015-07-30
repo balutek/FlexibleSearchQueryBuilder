@@ -13,7 +13,7 @@ import java.util.Map;
 /**
  * @author Paweł Łabuda
  */
-public class QueryModel
+public class QueryModel implements Renderable
 {
    private Select select; //should change to List, and add Logic Operation List
 
@@ -67,5 +67,11 @@ public class QueryModel
          i++;
       }
       return param + i;
+   }
+
+   @Override
+   public void render(StringBuilder builder)
+   {
+
    }
 }

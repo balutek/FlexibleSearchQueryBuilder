@@ -29,4 +29,10 @@ public abstract class CompareTwoColumns extends CompareOperation
    {
       return secondColumn;
    }
+
+   @Override
+   public void render(StringBuilder builder)
+   {
+
+   }
 }

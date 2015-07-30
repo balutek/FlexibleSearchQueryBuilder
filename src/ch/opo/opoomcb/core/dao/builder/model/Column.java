@@ -10,7 +10,7 @@ package ch.opo.opoomcb.core.dao.builder.model;
 /**
  * @author Paweł Łabuda
  */
-public class Column
+public class Column implements Renderable
 {
    private String name;
 
@@ -30,5 +30,11 @@ public class Column
    public String getAlias()
    {
       return alias;
+   }
+
+   @Override
+   public void render(StringBuilder builder)
+   {
+
    }
 }

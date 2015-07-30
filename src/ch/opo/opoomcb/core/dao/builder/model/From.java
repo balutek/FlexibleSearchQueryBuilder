@@ -13,7 +13,7 @@ import java.util.List;
 /**
  * @author Paweł Łabuda
  */
-public class From
+public class From implements Renderable
 {
    private Table table;
 
@@ -47,5 +47,11 @@ public class From
    public List<Join> getJoinList()
    {
       return joinList;
+   }
+
+   @Override
+   public void render(StringBuilder builder)
+   {
+
    }
 }

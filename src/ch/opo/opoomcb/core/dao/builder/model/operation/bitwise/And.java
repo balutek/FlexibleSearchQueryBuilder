@@ -12,4 +12,9 @@ package ch.opo.opoomcb.core.dao.builder.model.operation.bitwise;
  */
 public class And extends BitwiseOperation
 {
+   @Override
+   public void render(StringBuilder builder)
+   {
+
+   }
 }

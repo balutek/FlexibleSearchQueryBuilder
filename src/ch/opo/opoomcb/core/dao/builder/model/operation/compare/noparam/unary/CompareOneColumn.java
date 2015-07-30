@@ -21,4 +21,10 @@ public abstract class CompareOneColumn extends CompareOperation
    {
       return column;
    }
+
+   @Override
+   public void render(StringBuilder builder)
+   {
+
+   }
 }

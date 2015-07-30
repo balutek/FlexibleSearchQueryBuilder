@@ -11,4 +11,10 @@ public class IsNotNull extends CompareOneColumn
    {
       super(column);
    }
+
+   @Override
+   public void render(StringBuilder builder)
+   {
+
+   }
 }

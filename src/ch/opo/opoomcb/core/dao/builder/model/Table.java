@@ -11,7 +11,7 @@ package ch.opo.opoomcb.core.dao.builder.model;
  * @author Paweł Łabuda
  */
 
-public class Table
+public class Table implements Renderable
 {
    private String name;
 
@@ -31,5 +31,11 @@ public class Table
    public String getAlias()
    {
       return alias;
+   }
+
+   @Override
+   public void render(StringBuilder builder)
+   {
+
    }
 }

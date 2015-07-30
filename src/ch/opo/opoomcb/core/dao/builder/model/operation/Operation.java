@@ -7,9 +7,11 @@
  */
 package ch.opo.opoomcb.core.dao.builder.model.operation;
 
+import ch.opo.opoomcb.core.dao.builder.model.Renderable;
+
 /**
  * @author Paweł Łabuda
  */
-public abstract class Operation
+public abstract class Operation implements Renderable
 {
 }

@@ -15,7 +15,7 @@ import java.util.List;
 /**
  * @author Paweł Łabuda
  */
-public class Where
+public class Where implements Renderable
 {
    private List<Operation> operationList;
 
@@ -32,5 +32,11 @@ public class Where
    public List<Operation> getOperationList()
    {
       return operationList;
+   }
+
+   @Override
+   public void render(StringBuilder builder)
+   {
+      
    }
 }

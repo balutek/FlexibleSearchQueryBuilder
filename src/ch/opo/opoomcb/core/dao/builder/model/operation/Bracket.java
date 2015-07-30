@@ -34,4 +34,9 @@ public class Bracket extends Operation
       return operationList;
    }
 
+   @Override
+   public void render(StringBuilder builder)
+   {
+
+   }
 }

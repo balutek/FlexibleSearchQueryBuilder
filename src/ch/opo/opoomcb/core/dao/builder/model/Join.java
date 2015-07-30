@@ -10,7 +10,7 @@ package ch.opo.opoomcb.core.dao.builder.model;
 /**
  * @author Paweł Łabuda
  */
-public class Join
+public class Join implements Renderable
 {
    private Table table;
 
@@ -34,5 +34,11 @@ public class Join
    public On getOn()
    {
       return on;
+   }
+
+   @Override
+   public void render(StringBuilder builder)
+   {
+
    }
 }
