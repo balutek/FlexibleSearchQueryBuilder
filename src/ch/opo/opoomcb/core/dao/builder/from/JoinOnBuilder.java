@@ -1,8 +1,8 @@
 package ch.opo.opoomcb.core.dao.builder.from;
 
-import ch.opo.opoomcb.core.dao.builder.constants.QueryElements;
 import ch.opo.opoomcb.core.dao.builder.model.On;
 import ch.opo.opoomcb.core.dao.builder.model.QueryModel;
+import ch.opo.opoomcb.core.dao.builder.model.operation.Bracket;
 import ch.opo.opoomcb.core.dao.builder.model.operation.Operation;
 import ch.opo.opoomcb.core.dao.builder.whereSegment.ParamBuilder;
 
@@ -14,8 +14,6 @@ import java.util.List;
  */
 public class JoinOnBuilder
 {
-   private StringBuilder query;
-
    private QueryModel queryModel;
 
    private ParamJoinBuilder paramJoinBuilder;
@@ -24,84 +22,48 @@ public class JoinOnBuilder
 
    private List<Operation> operationList;
 
-   private int bracketCount = 0;
+   private List<Bracket> bracketList;
 
    public JoinOnBuilder(QueryModel queryModel, ParamJoinBuilder paramJoinBuilder)
    {
       this.queryModel = queryModel;
-//                .append(QueryElements.ON)
-//                .append(QueryElements.OPEN_BRACKET);
       this.paramJoinBuilder = paramJoinBuilder;
       this.operatorJoinBuilder = new OperatorJoinBuilder(this);
       operationList = new ArrayList<Operation>();
+      bracketList = new ArrayList<Bracket>();
    }
 
    public void insertOperationWithParam(Operation operation, String key, Object param)
    {
       queryModel.putQueryParam(key, param);
-      operationList.add(operation);
+      insertOperation(operation);
    }
 
    public void insertOperation(Operation operation)
    {
-      operationList.add(operation);
-   }
-
-   public void insertRestrictionWithOperator(String alias1, String param1, String alias2, String param2, String operator)
-   {
-      query.append(QueryElements.KEY_PARAM_PREFIX)
-         .append(alias1)
-         .append(".")
-         .append(param1)
-         .append(QueryElements.KEY_PARAM_SUFFIX)
-         .append(" ")
-         .append(operator)
-         .append(" ")
-         .append(QueryElements.KEY_PARAM_PREFIX)
-         .append(alias2)
-         .append(".")
-         .append(param2)
-         .append(QueryElements.KEY_PARAM_SUFFIX);
-   }
-
-   public void insertRestrictionWithNull(String alias, String param, String nullQuery)
-   {
-      query.append(QueryElements.KEY_PARAM_PREFIX)
-         .append(alias)
-         .append(".")
-         .append(param)
-         .append(QueryElements.KEY_PARAM_SUFFIX)
-         .append(" ")
-         .append(nullQuery);
-   }
-
-   public void insertOperator(QueryElements element)
-   {
-      query.append(element);
+      if (bracketList.size() > 0)
+      {
+         bracketList.get(bracketList.size() - 1).addOperation(operation);
+      }
+      else
+      {
+         operationList.add(operation);
+      }
    }
 
    public void openBracket()
    {
-      bracketCount++;
-      query.append(QueryElements.OPEN_BRACKET);
+      bracketList.add(new Bracket());
    }
 
    public void closeBracket()
    {
-      bracketCount--;
-      if (bracketCount < 0)
+      if (bracketList.size() > 0)
       {
-         bracketCount = 0;
-      }
-      else
-      {
-         query.append(QueryElements.CLOSE_BRACKET);
-      }
-   }
+         Bracket bracket = bracketList.remove(bracketList.size() - 1);
 
-   public void closeJoinBuilder()
-   {
-      query.append(QueryElements.CLOSE_BRACKET);
+         insertOperation(bracket);
+      }
    }
 
    public ParamJoinBuilder getParamJoinBuilder()

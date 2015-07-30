@@ -7,13 +7,15 @@
  */
 package ch.opo.opoomcb.core.dao.builder.whereSegment;
 
-import ch.opo.opoomcb.core.dao.builder.constants.QueryElements;
+import ch.opo.opoomcb.core.dao.builder.model.OrderBy;
 import ch.opo.opoomcb.core.dao.builder.model.QueryModel;
-import ch.opo.opoomcb.core.dao.builder.model.Select;
+import ch.opo.opoomcb.core.dao.builder.model.Where;
+import ch.opo.opoomcb.core.dao.builder.model.operation.Bracket;
+import ch.opo.opoomcb.core.dao.builder.model.operation.Operation;
 import ch.opo.opoomcb.core.dao.builder.orderBy.OrderBySegmentBuilder;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * @author Paweł Łabuda
@@ -28,11 +30,13 @@ public class WhereSegmentBuilder
 
    private QueryModel queryModel;
 
-   private StringBuilder query;
+//   private StringBuilder query;
+//
+//   private Map<String, Object> paramMap;
 
-   private Map<String, Object> paramMap;
+   private List<Operation> operationList;
 
-   private int bracketCount = 0;
+   private List<Bracket> bracketList;
 
    public WhereSegmentBuilder(QueryModel queryModel, ParamBuilder paramBuilder)
    {
@@ -40,108 +44,54 @@ public class WhereSegmentBuilder
 //         .append(QueryElements.WHERE);
       this.paramBuilder = paramBuilder;
       this.operatorBuilder = new OperatorBuilder(this);
-      paramMap = new HashMap<String, Object>();
+//      paramMap = new HashMap<String, Object>();
+      operationList = new ArrayList<Operation>();
+      bracketList = new ArrayList<Bracket>();
+
+      this.queryModel.getLastSelect().setWhere(new Where());
    }
 
-   public void insertRestrictionWithOperator(String param, Object value, String operator)
+   public void insertOperationWithParam(Operation operation, String key, Object param)
    {
-      String key = createKey(param);
-      query.append(QueryElements.KEY_PARAM_PREFIX)
-         .append(param)
-         .append(QueryElements.KEY_PARAM_SUFFIX)
-         .append(" ")
-         .append(operator)
-         .append(" ")
-         .append(QueryElements.VALUE_PARAM_PREFIX)
-         .append(key);
-      paramMap.put(key, value);
+      queryModel.putQueryParam(key, param);
+      insertOperation(operation);
    }
 
-   public void insertRestrictionWithNull(String param, String nullQuery)
+   public void insertOperation(Operation operation)
    {
-      query.append(QueryElements.KEY_PARAM_PREFIX)
-         .append(param)
-         .append(QueryElements.KEY_PARAM_SUFFIX)
-         .append(" ")
-         .append(nullQuery);
-   }
-
-   public void insertRestrictionWithLike(String param, String value)
-   {
-      query.append(QueryElements.KEY_PARAM_PREFIX)
-         .append(param)
-         .append(QueryElements.KEY_PARAM_SUFFIX)
-         .append(QueryElements.LIKE)
-         .append("'")
-         .append(value)
-         .append("'");
-
-   }
-
-   public void insertRestrictionIn(String param, Object[] values) //todo aga - powinno być dodanie do mapy parametrów
-   {
-      query.append(QueryElements.KEY_PARAM_PREFIX)
-         .append(param)
-         .append(QueryElements.KEY_PARAM_SUFFIX)
-         .append(QueryElements.IN)
-         .append(QueryElements.OPEN_BRACKET);
-      for (int i = 0; i < values.length; ++i)
+      if (bracketList.size() > 0)
       {
-         query.append(values[i]);
-         if (i < values.length - 1)
-         {
-            query.append(", ");
-         }
+         bracketList.get(bracketList.size() - 1).addOperation(operation);
       }
-      query.append(QueryElements.CLOSE_BRACKET);
-   }
-
-   public void insertOperator(QueryElements element)
-   {
-      query.append(element);
+      else
+      {
+         operationList.add(operation);
+      }
    }
 
    public void openBracket()
    {
-      bracketCount++;
-      query.append(QueryElements.OPEN_BRACKET);
+      bracketList.add(new Bracket());
    }
 
    public void closeBracket()
    {
-      bracketCount--;
-      if (bracketCount < 0)
+      if (bracketList.size() > 0)
       {
-         bracketCount = 0;
-      }
-      else
-      {
-         query.append(QueryElements.CLOSE_BRACKET);
+         Bracket bracket = bracketList.remove(bracketList.size() - 1);
+
+         insertOperation(bracket);
       }
    }
 
-   public String build()
+   public QueryModel getQuery()
    {
-      closeAllBrackets();
-      return query.toString();
+      return queryModel;
    }
 
-   private void closeAllBrackets() // it shouldn't exist, it should be exception!
+   public String createKey(String name)
    {
-      while (bracketCount > 0)
-      {
-         closeBracket();
-      }
-   }
-
-   private String createKey(String param)
-   {
-      int i = 0;
-      while (paramMap.containsKey(param + i))
-      {
-         i++;
-      }
-      return param + i;
+      return queryModel.createKey(name);
    }
 
    public ParamBuilder getParamBuilder()
@@ -154,13 +104,13 @@ public class WhereSegmentBuilder
       return operatorBuilder;
    }
 
-   public OrderBySegmentBuilder getOrderByBuilder(String order)
+   public OrderBySegmentBuilder getOrderByBuilder(String alias, String column)
    {
-      closeAllBrackets();
-
+      queryModel.getLastWhere().setOperationList(operationList);
+      queryModel.getLastSelect().setOrderBy(new OrderBy(column, alias));
       if (orderByBuilder == null)
       {
-         orderByBuilder = new OrderBySegmentBuilder(query, order);
+         orderByBuilder = new OrderBySegmentBuilder(queryModel);
       }
 
       return orderByBuilder;

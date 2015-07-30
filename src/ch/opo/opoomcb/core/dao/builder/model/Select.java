@@ -23,6 +23,8 @@ public class Select
 
    private Where where;
 
+   private OrderBy orderBy;
+
    public Select()
    {
       columnList = new ArrayList<Column>();
@@ -76,5 +78,15 @@ public class Select
    public void setWhere(Where where)
    {
       this.where = where;
+   }
+
+   public OrderBy getOrderBy()
+   {
+      return orderBy;
+   }
+
+   public void setOrderBy(OrderBy orderBy)
+   {
+      this.orderBy = orderBy;
    }
 }

@@ -1,6 +1,8 @@
 package ch.opo.opoomcb.core.dao.builder.from;
 
 import ch.opo.opoomcb.core.dao.builder.constants.QueryElements;
+import ch.opo.opoomcb.core.dao.builder.model.operation.bitwise.And;
+import ch.opo.opoomcb.core.dao.builder.model.operation.bitwise.Or;
 import ch.opo.opoomcb.core.dao.builder.whereSegment.ParamBuilder;
 
 /**
@@ -27,19 +29,18 @@ public class OperatorJoinBuilder
 
     public ParamBuilder where()
     {
-        builder.closeJoinBuilder();
         return builder.getParamBuilder();
     }
 
     public ParamJoinBuilder and()
     {
-        builder.insertOperator(QueryElements.AND);
+        builder.insertOperation(new And());
         return builder.getParamJoinBuilder();
     }
 
     public ParamJoinBuilder or()
     {
-        builder.insertOperator(QueryElements.OR);
+        builder.insertOperation(new Or());
         return builder.getParamJoinBuilder();
     }
 

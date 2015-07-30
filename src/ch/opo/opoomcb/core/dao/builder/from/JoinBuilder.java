@@ -14,20 +14,10 @@ import ch.opo.opoomcb.core.dao.builder.model.QueryModel;
  */
 public class JoinBuilder
 {
-//    private StringBuilder query;
-
    private QueryModel queryModel;
-
-   private String alias;
-
-   private String typecode;
 
    public JoinBuilder(QueryModel queryModel)
    {
-//        query.append(" JOIN ")
-//                .append(typecode)
-//                .append(QueryElements.AS)
-//                .append(alias);
       this.queryModel = queryModel;
    }
 

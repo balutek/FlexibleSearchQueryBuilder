@@ -7,7 +7,14 @@
  */
 package ch.opo.opoomcb.core.dao.builder.whereSegment;
 
+import ch.opo.opoomcb.core.dao.builder.model.Column;
+import ch.opo.opoomcb.core.dao.builder.model.Param;
 import ch.opo.opoomcb.core.dao.builder.model.QueryModel;
+import ch.opo.opoomcb.core.dao.builder.model.operation.Operation;
+import ch.opo.opoomcb.core.dao.builder.model.operation.compare.noparam.binary.*;
+import ch.opo.opoomcb.core.dao.builder.model.operation.compare.noparam.unary.IsNotNull;
+import ch.opo.opoomcb.core.dao.builder.model.operation.compare.noparam.unary.IsNull;
+import ch.opo.opoomcb.core.dao.builder.model.operation.compare.param.*;
 
 /**
  * @author Paweł Łabuda
@@ -21,81 +28,147 @@ public class ParamBuilder
       builder = new WhereSegmentBuilder(queryModel, this);
    }
 
-   public OperatorBuilder isNull(String param)
+   public OperatorBuilder isNull(String alias, String column)
    {
-      builder.insertRestrictionWithNull(param, "IS NULL");
+      Operation operation = new IsNull(new Column(column, alias));
+      builder.insertOperation(operation);
       return builder.getOperatorBuilder();
    }
 
-   public OperatorBuilder isNotNull(String param)
+   public OperatorBuilder isNotNull(String alias, String column)
    {
-      builder.insertRestrictionWithNull(param, "IS NOT NULL");
+      Operation operation = new IsNotNull(new Column(column, alias));
+      builder.insertOperation(operation);
       return builder.getOperatorBuilder();
    }
 
-   public OperatorBuilder lessThan(String param, Object value)
+   public OperatorBuilder lessThan(String alias, String column, Object param)
    {
-      builder.insertRestrictionWithOperator(param, value, "<");
+      String key = creteKey(column);
+      Operation operation = new LessParam(new Column(column, alias), new Param(key));
+      builder.insertOperationWithParam(operation, key, param);
       return builder.getOperatorBuilder();
    }
 
-   public OperatorBuilder lessOrEqualsThan(String param, Object value)
+   public OperatorBuilder lessThan(String alias1, String column1, String alias2, String column2)
    {
-      builder.insertRestrictionWithOperator(param, value, "<=");
+      Operation operation = new Less(new Column(column1, alias1), new Column(column2, alias2));
+      builder.insertOperation(operation);
       return builder.getOperatorBuilder();
    }
 
-   public OperatorBuilder greaterThan(String param, Object value)
+   public OperatorBuilder lessOrEqualsThan(String alias, String column, Object param)
    {
-      builder.insertRestrictionWithOperator(param, value, ">");
+      String key = creteKey(column);
+      Operation operation = new LessOrEqualsParam(new Column(column, alias), new Param(key));
+      builder.insertOperationWithParam(operation, key, param);
       return builder.getOperatorBuilder();
    }
 
-   public OperatorBuilder greaterOrEqualsThan(String param, Object value)
+   public OperatorBuilder lessOrEqualsThan(String alias1, String column1, String alias2, String column2)
    {
-      builder.insertRestrictionWithOperator(param, value, ">=");
+      Operation operation = new LessOrEquals(new Column(column1, alias1), new Column(column2, alias2));
+      builder.insertOperation(operation);
       return builder.getOperatorBuilder();
    }
 
-   public OperatorBuilder startWith(String param, String value)
+   public OperatorBuilder greaterThan(String alias, String column, Object param)
    {
-      builder.insertRestrictionWithLike(param, value + "%");
+      String key = creteKey(column);
+      Operation operation = new GreaterParam(new Column(column, alias), new Param(key));
+      builder.insertOperationWithParam(operation, key, param);
       return builder.getOperatorBuilder();
    }
 
-   public OperatorBuilder endWith(String param, String value)
+   public OperatorBuilder greaterThan(String alias1, String column1, String alias2, String column2)
    {
-      builder.insertRestrictionWithLike(param, "%" + value);
+      Operation operation = new Greater(new Column(column1, alias1), new Column(column2, alias2));
+      builder.insertOperation(operation);
       return builder.getOperatorBuilder();
    }
 
-   public OperatorBuilder contains(String param, String value)
+   public OperatorBuilder greaterOrEqualsThan(String alias, String column, Object param)
    {
-      builder.insertRestrictionWithLike(param, "%" + value + "%");
+      String key = creteKey(column);
+      Operation operation = new GreaterOrEqualsParam(new Column(column, alias), new Param(key));
+      builder.insertOperationWithParam(operation, key, param);
       return builder.getOperatorBuilder();
    }
 
-   public OperatorBuilder like(String param, String value)
+   public OperatorBuilder greaterOrEqualsThan(String alias1, String column1, String alias2, String column2)
    {
-      builder.insertRestrictionWithLike(param, value);
+      Operation operation = new GreaterOrEquals(new Column(column1, alias1), new Column(column2, alias2));
+      builder.insertOperation(operation);
       return builder.getOperatorBuilder();
    }
 
-   public OperatorBuilder equals(String param, Object value)
+   public OperatorBuilder startWith(String alias, String column, String param)
    {
-      builder.insertRestrictionWithOperator(param, value, "=");
+      String key = creteKey(column);
+      Operation operation = new Like(new Column(column, alias), new Param(key));
+      builder.insertOperationWithParam(operation, key, param + '%'); //todo chyba zminic to
       return builder.getOperatorBuilder();
    }
 
-   public OperatorBuilder notEquals(String param, Object value)
+   public OperatorBuilder endWith(String alias, String column, String param)
    {
-      builder.insertRestrictionWithOperator(param, value, "<>");
+      String key = creteKey(column);
+      Operation operation = new Like(new Column(column, alias), new Param(key));
+      builder.insertOperationWithParam(operation, key, '%' + param);
       return builder.getOperatorBuilder();
    }
 
-   public OperatorBuilder isIn(String param, Object... values)
+   public OperatorBuilder contains(String alias, String column, String param)
    {
-      builder.insertRestrictionIn(param, values);
+      String key = creteKey(column);
+      Operation operation = new Like(new Column(column, alias), new Param(key));
+      builder.insertOperationWithParam(operation, key, '%' + param + '%');
+      return builder.getOperatorBuilder();
+   }
+
+   public OperatorBuilder like(String alias, String column, String param)
+   {
+      String key = creteKey(column);
+      Operation operation = new Like(new Column(column, alias), new Param(key));
+      builder.insertOperationWithParam(operation, key, param);
+      return builder.getOperatorBuilder();
+   }
+
+   public OperatorBuilder equals(String alias, String column, Object param)
+   {
+      String key = creteKey(column);
+      Operation operation = new EqualsParam(new Column(column, alias), new Param(key));
+      builder.insertOperationWithParam(operation, key, param);
+      return builder.getOperatorBuilder();
+   }
+
+   public OperatorBuilder equals(String alias1, String column1, String alias2, String column2)
+   {
+      Operation operation = new Equals(new Column(column1, alias1), new Column(column2, alias2));
+      builder.insertOperation(operation);
+      return builder.getOperatorBuilder();
+   }
+
+   public OperatorBuilder notEquals(String alias, String column, Object param)
+   {
+      String key = creteKey(column);
+      Operation operation = new NotEqualsParam(new Column(column, alias), new Param(key));
+      builder.insertOperationWithParam(operation, key, param);
+      return builder.getOperatorBuilder();
+   }
+
+   public OperatorBuilder notEquals(String alias1, String column1, String alias2, String column2)
+   {
+      Operation operation = new NotEquals(new Column(column1, alias1), new Column(column2, alias2));
+      builder.insertOperation(operation);
+      return builder.getOperatorBuilder();
+   }
+
+   public OperatorBuilder isIn(String alias, String column, Object param)
+   {
+      String key = creteKey(column);
+      Operation operation = new In(new Column(column, alias), new Param(key));
+      builder.insertOperationWithParam(operation, key, param);
       return builder.getOperatorBuilder();
    }
 
@@ -105,4 +178,8 @@ public class ParamBuilder
       return builder.getParamBuilder();
    }
 
+   private String creteKey(String name)
+   {
+      return builder.createKey(name);
+   }
 }

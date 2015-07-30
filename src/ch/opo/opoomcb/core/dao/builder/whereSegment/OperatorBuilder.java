@@ -8,6 +8,9 @@
 package ch.opo.opoomcb.core.dao.builder.whereSegment;
 
 import ch.opo.opoomcb.core.dao.builder.constants.QueryElements;
+import ch.opo.opoomcb.core.dao.builder.model.QueryModel;
+import ch.opo.opoomcb.core.dao.builder.model.operation.bitwise.And;
+import ch.opo.opoomcb.core.dao.builder.model.operation.bitwise.Or;
 import ch.opo.opoomcb.core.dao.builder.orderBy.OrderBySegmentBuilder;
 
 /**
@@ -22,25 +25,25 @@ public class OperatorBuilder
       this.builder = builder;
    }
 
-   public String build()
+   public QueryModel getQuery()
    {
-      return builder.build();
+      return builder.getQuery();
    }
 
-   public OrderBySegmentBuilder orderBy(String order)
+   public OrderBySegmentBuilder orderBy(String alias, String column)
    {
-      return builder.getOrderByBuilder(order);
+      return builder.getOrderByBuilder(alias, column);
    }
 
    public ParamBuilder and()
    {
-      builder.insertOperator(QueryElements.AND);
+      builder.insertOperation(new And());
       return builder.getParamBuilder();
    }
 
    public ParamBuilder or()
    {
-      builder.insertOperator(QueryElements.OR);
+      builder.insertOperation(new Or());
       return builder.getParamBuilder();
    }
 

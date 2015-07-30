@@ -15,7 +15,7 @@ import java.util.Map;
  */
 public class QueryModel
 {
-   private Select select; //should change to List, and add Logic Operation List
+   private Select select; // todo should change to List, and add Logic Operation List
 
    private Map<String, Object> queryParams;
 
