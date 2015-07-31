@@ -48,7 +48,7 @@ public class Query extends AbstractBuilder<QueryModel>
    public String build()
    {
       StringBuilder builder = new StringBuilder();
-      constructedObject.render(new StringBuilder());
+      constructedObject.render(builder);
       return builder.toString();
    }
 
