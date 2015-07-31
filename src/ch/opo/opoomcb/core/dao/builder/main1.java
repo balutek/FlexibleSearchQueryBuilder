@@ -9,8 +9,6 @@ package ch.opo.opoomcb.core.dao.builder;
 
 import ch.opo.opoomcb.core.dao.builder.model.QueryModel;
 
-import java.util.ArrayList;
-
 /**
  * @author Paweł Łabuda
  */
@@ -39,13 +37,13 @@ public class main1
                      .endWith("w", "wwwww", "huifdifjdkl")
                   .closeBracket()
                   .and()
-                  .notEquals("alias", "ee", 3)
+                  .notEquals("alias", "ee", "key1")
                .closeBracket()
                .and()
-               .notEquals("alias", "ee", 4)
-            .or()
-            .isIn("alias", "aaa", new ArrayList<String>())
-            .orderBy("alias1","www")
+               .notEquals("alias", "ee", "key2")
+               .or()
+               .isIn("alias", "aaa", "key3")
+               .orderBy("alias1","www")
             .getQuery();
 
       if (queryModel == null)
