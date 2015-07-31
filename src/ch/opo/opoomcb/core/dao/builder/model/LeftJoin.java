@@ -19,10 +19,10 @@ public class LeftJoin extends Join
    }
 
    @Override
-   public StringBuilder render(StringBuilder builder)
+   public void render(StringBuilder builder)
    {
-      builder.append(LEFT);
+      builder.append(LEFT)
+         .append(SPACE);
       super.render(builder);
-      return builder;
    }
 }

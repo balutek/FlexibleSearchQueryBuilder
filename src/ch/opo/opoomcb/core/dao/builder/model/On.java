@@ -12,6 +12,8 @@ import ch.opo.opoomcb.core.dao.builder.model.operation.Operation;
 import java.util.ArrayList;
 import java.util.List;
 
+import static ch.opo.opoomcb.core.dao.builder.constants.QueryElements.*;
+
 /**
  * @author Paweł Łabuda
  */
@@ -34,15 +36,14 @@ public class On implements Renderable
       operationList.add(operation);
    }
 
-   public List<Operation> getOperationList()
-   {
-      return operationList;
-   }
-
    @Override
-   public StringBuilder render(StringBuilder builder)
+   public void render(StringBuilder builder)
    {
-
-      return builder;
+      builder.append(ON);
+      for (Operation operation : operationList)
+      {
+         builder.append(SPACE);
+         operation.render(builder);
+      }
    }
 }

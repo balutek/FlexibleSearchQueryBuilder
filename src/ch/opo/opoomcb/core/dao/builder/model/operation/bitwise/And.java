@@ -7,15 +7,16 @@
  */
 package ch.opo.opoomcb.core.dao.builder.model.operation.bitwise;
 
+import ch.opo.opoomcb.core.dao.builder.constants.QueryElements;
+
 /**
  * @author Paweł Łabuda
  */
 public class And extends BitwiseOperation
 {
    @Override
-   public StringBuilder render(StringBuilder builder)
+   public void render(StringBuilder builder)
    {
-
-      return builder;
+      builder.append(QueryElements.AND);
    }
 }

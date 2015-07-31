@@ -18,45 +18,51 @@ public class main1
 {
    public static void main(String[] arg)
    {
-//      QueryModel queryModel =
-//         QueryBuilder
-//            .selectDistinct()
-//            .from("p", "Product")
-//               .leftJoin("w", "Category")
-//                  .on()
-//                     .openBracket()
-//                        .equals("p", "Product", "w", "Category")
-//                        .and()
-//                        .isNotNull("p", "Product")
-//                     .closeBracket()
-//                     .and()
-//                     .isNull("ww", "aaaaa")
-//            .where()
-//               .openBracket()
-//                  .like("alias", "www", "lala")
-//                  .or()
-//                  .openBracket()
-//                     .endsWith("w", "wwwww", "huifdifjdkl")
-//                  .closeBracket()
-//                  .and()
-//                  .notEquals("alias", "ee", "key1")
-//               .closeBracket()
-//               .and()
-//               .notEquals("alias", "ee", "key2")
-//               .or()
-//               .isIn("alias", "aaa", "key3")
-//               .orderBy("alias1", "www")
-//            .getQuery();
+      QueryModel queryModel =
+         QueryBuilder
+            .selectDistinct()
+            .from("p", "Product")
+               .leftJoin("w", "Category")
+                  .on()
+                     .openBracket()
+                        .equals("p", "Product", "w", "Category")
+                        .and()
+                        .isNotNull("p", "Product")
+                     .closeBracket()
+                     .and()
+                     .isNull("ww", "aaaaa")
+            .where()
+               .like("alias", "www", "lala")
+               .or()
+               .openBracket()
+                  .endsWith("w", "wwwww", "key4")
+                  .and()
+                  .notEquals("alias", "ee", "key1")
+               .closeBracket()
+               .and()
+               .notEquals("alias", "ee", "key2")
+               .or()
+               .isIn("alias", "aaa", "key3")
+               .orderBy("alias1","www")
+            .getQuery();
 
-//      if (queryModel == null)
-//      {
-//         for (int i = 0; i < 10; ++i)
-//         {
-//            System.out.println("lala");
-//         }
-//      }
+      System.out.println(queryModel.buildQuery() + "\n\n");
 
-//      Query.select().pk().from("").join("")
+      queryModel =
+         QueryBuilder
+            .selectDistinct()
+            .from("p", "Product")
+               .leftJoin("w", "Category")
+                  .on()
+                    .equals("p", "Product", "w", "Category")
+            .where()
+            .like("alias", "www", "lala")
+            .or()
+            .notEquals("alias", "ee", "alias2", "columnNAME")
+            .or()
+            .isIn("alias", "aaa", "key3")
+            .getQuery();
 
+      System.out.println(queryModel.buildQuery());
    }
 }

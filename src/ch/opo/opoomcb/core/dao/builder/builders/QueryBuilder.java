@@ -31,7 +31,7 @@ public class QueryBuilder
 
       Select select = new Select();
       select.setDistinct(distinct);
-      select.addColumn(new Column(param, alias));
+      select.addColumn(new Column(SELECT_ITEM, alias));
       queryModel.setSelect(select);
    }
 

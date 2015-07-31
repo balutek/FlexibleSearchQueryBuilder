@@ -11,4 +11,10 @@ public class Less extends CompareTwoColumns
    {
       super(firstColumn, secondColumn);
    }
+
+   @Override
+   protected String getComparisonOperation()
+   {
+      return "<";
+   }
 }

@@ -39,11 +39,6 @@ public class Select implements Renderable
       this.distinct = distinct;
    }
 
-   public boolean isDistinct()
-   {
-      return distinct;
-   }
-
    public void addColumn(Column column)
    {
       columnList.add(column);
@@ -52,16 +47,6 @@ public class Select implements Renderable
    public void addFrom(From from)
    {
       fromList.add(from);
-   }
-
-   public List<Column> getColumnList()
-   {
-      return columnList;
-   }
-
-   public List<From> getFromList()
-   {
-      return fromList;
    }
 
    public From getLastFrom()
@@ -83,18 +68,13 @@ public class Select implements Renderable
       this.where = where;
    }
 
-   public OrderBy getOrderBy()
-   {
-      return orderBy;
-   }
-
    public void setOrderBy(OrderBy orderBy)
    {
       this.orderBy = orderBy;
    }
 
    @Override
-   public StringBuilder render(StringBuilder builder)
+   public void render(StringBuilder builder)
    {
       builder.append(SELECT).append(SPACE);
 
@@ -111,22 +91,26 @@ public class Select implements Renderable
       {
          where.render(builder);
       }
-      return builder;
+      if (orderBy != null)
+      {
+         orderBy.render(builder);
+      }
    }
 
    private void renderFromList(StringBuilder builder)
    {
-      Iterator<From> fromIterator = fromList.iterator();
-      while (fromIterator.hasNext())
-      {
-         builder.append(OPEN_CURLY_BRACKET);
-         fromIterator.next().render(builder);
-         builder.append(CLOSE_CURLY_BRACKET);
-         if (fromIterator.hasNext())
-         {
-            builder.append(TABLE_SEPARATOR);
-         }
-      }
+      fromList.get(0).render(builder);
+//      Iterator<From> fromIterator = fromList.iterator();
+//      while (fromIterator.hasNext())
+//      {
+//         builder.append(OPEN_CURLY_BRACKET);
+//         fromIterator.next().render(builder);
+//         builder.append(CLOSE_CURLY_BRACKET);
+//         if (fromIterator.hasNext())
+//         {
+//            builder.append(TABLE_SEPARATOR);
+//         }
+//      }
    }
 
    private void renderColumnList(StringBuilder builder)
@@ -143,7 +127,7 @@ public class Select implements Renderable
 
 //      new FromSegmentBuilder()
 
-      StringBuilder executed = executed();
+//      StringBuilder executed = executed();
    }
 
    private <T> T executed()

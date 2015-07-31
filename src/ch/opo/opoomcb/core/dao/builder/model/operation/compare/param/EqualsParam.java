@@ -19,4 +19,10 @@ public class EqualsParam extends CompareColumnAndParam
    {
       super(column, key);
    }
+
+   @Override
+   protected String getComparisonOperation()
+   {
+      return "=";
+   }
 }

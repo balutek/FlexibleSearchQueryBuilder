@@ -12,4 +12,10 @@ public class NotEqualsParam extends CompareColumnAndParam
    {
       super(column, key);
    }
+
+   @Override
+   protected String getComparisonOperation()
+   {
+      return "<>";
+   }
 }

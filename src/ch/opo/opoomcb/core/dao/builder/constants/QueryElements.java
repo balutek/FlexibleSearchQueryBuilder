@@ -27,9 +27,11 @@ public enum QueryElements
    DISTINCT("DISTINCT"),
    AS("AS"),
    ON("ON"),
+   IS_NULL("IS NULL"),
+   IS_NOT_NULL("IS NOT NULL"),
    COLUMN_SEPARATOR(","),
    TABLE_SEPARATOR(","),
-   ALIAS_SEPARATOR(":"),
+   ALIAS_SEPARATOR("."),
    OPEN_CURLY_BRACKET("{"),
    CLOSE_CURLY_BRACKET("}"),
    VALUE_PARAM_PREFIX("?"),
@@ -38,7 +40,7 @@ public enum QueryElements
 
    private String code;
 
-   private QueryElements(final String code)
+   QueryElements(final String code)
    {
       this.code = code;
    }

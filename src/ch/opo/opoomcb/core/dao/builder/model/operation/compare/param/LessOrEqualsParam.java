@@ -12,4 +12,10 @@ public class LessOrEqualsParam extends CompareColumnAndParam
    {
       super(column, key);
    }
+
+   @Override
+   protected String getComparisonOperation()
+   {
+      return "<=";
+   }
 }

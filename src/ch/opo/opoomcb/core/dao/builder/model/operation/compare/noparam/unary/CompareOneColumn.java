@@ -1,5 +1,6 @@
 package ch.opo.opoomcb.core.dao.builder.model.operation.compare.noparam.unary;
 
+import ch.opo.opoomcb.core.dao.builder.constants.QueryElements;
 import ch.opo.opoomcb.core.dao.builder.model.Column;
 import ch.opo.opoomcb.core.dao.builder.model.operation.compare.CompareOperation;
 
@@ -23,9 +24,10 @@ public abstract class CompareOneColumn extends CompareOperation
    }
 
    @Override
-   public StringBuilder render(StringBuilder builder)
+   public void render(StringBuilder builder)
    {
-
-      return builder;
+      column.render(builder);
+      builder.append(QueryElements.SPACE)
+         .append(getComparisonOperation());
    }
 }

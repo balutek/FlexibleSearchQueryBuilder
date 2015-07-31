@@ -3,6 +3,8 @@ package ch.opo.opoomcb.core.dao.builder.model.operation.compare.noparam.binary;
 import ch.opo.opoomcb.core.dao.builder.model.Column;
 import ch.opo.opoomcb.core.dao.builder.model.operation.compare.CompareOperation;
 
+import static ch.opo.opoomcb.core.dao.builder.constants.QueryElements.SPACE;
+
 /**
  * @author Paweł Łabuda
  */
@@ -20,20 +22,13 @@ public abstract class CompareTwoColumns extends CompareOperation
       this.secondColumn = secondColumn;
    }
 
-   public Column getFirstColumn()
-   {
-      return firstColumn;
-   }
-
-   public Column getSecondColumn()
-   {
-      return secondColumn;
-   }
-
    @Override
-   public StringBuilder render(StringBuilder builder)
+   public void render(StringBuilder builder)
    {
-
-      return builder;
+      firstColumn.render(builder);
+      builder.append(SPACE)
+         .append(getComparisonOperation())
+         .append(SPACE);
+      secondColumn.render(builder);
    }
 }

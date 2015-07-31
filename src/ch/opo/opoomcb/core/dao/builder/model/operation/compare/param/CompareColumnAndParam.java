@@ -4,6 +4,9 @@ import ch.opo.opoomcb.core.dao.builder.model.Column;
 import ch.opo.opoomcb.core.dao.builder.model.Key;
 import ch.opo.opoomcb.core.dao.builder.model.operation.compare.CompareOperation;
 
+import static ch.opo.opoomcb.core.dao.builder.constants.QueryElements.*;
+
+
 /**
  * @author Paweł Łabuda
  */
@@ -19,20 +22,14 @@ public abstract class CompareColumnAndParam extends CompareOperation
       this.key = key;
    }
 
-   public Column getColumn()
-   {
-      return column;
-   }
-
-   public Key getKey()
-   {
-      return key;
-   }
-
    @Override
-   public StringBuilder render(StringBuilder builder)
+   public void render(StringBuilder builder)
    {
-
-      return builder;
+      column.render(builder);
+      builder.append(SPACE)
+         .append(getComparisonOperation())
+         .append(SPACE)
+         .append(VALUE_PARAM_PREFIX);
+      key.render(builder);
    }
 }

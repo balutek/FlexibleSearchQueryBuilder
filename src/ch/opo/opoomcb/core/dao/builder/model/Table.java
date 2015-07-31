@@ -7,6 +7,8 @@
  */
 package ch.opo.opoomcb.core.dao.builder.model;
 
+import static ch.opo.opoomcb.core.dao.builder.constants.QueryElements.*;
+
 /**
  * @author Paweł Łabuda
  */
@@ -27,20 +29,16 @@ public class Table implements Renderable
       this.alias = alias;
    }
 
-   public String getName()
-   {
-      return name;
-   }
-
-   public String getAlias()
-   {
-      return alias;
-   }
-
    @Override
-   public StringBuilder render(StringBuilder builder)
+   public void render(StringBuilder builder)
    {
-
-      return builder;
+      builder.append(name);
+      if (alias != null)
+      {
+         builder.append(SPACE)
+            .append(AS)
+            .append(SPACE)
+            .append(alias);
+      }
    }
 }
