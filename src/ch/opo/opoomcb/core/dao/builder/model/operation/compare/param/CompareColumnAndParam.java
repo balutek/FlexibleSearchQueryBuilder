@@ -1,7 +1,7 @@
 package ch.opo.opoomcb.core.dao.builder.model.operation.compare.param;
 
 import ch.opo.opoomcb.core.dao.builder.model.Column;
-import ch.opo.opoomcb.core.dao.builder.model.Param;
+import ch.opo.opoomcb.core.dao.builder.model.Key;
 import ch.opo.opoomcb.core.dao.builder.model.operation.compare.CompareOperation;
 
 /**
@@ -11,12 +11,12 @@ public abstract class CompareColumnAndParam extends CompareOperation
 {
    private Column column;
 
-   private Param parameter;
+   private Key key;
 
-   public CompareColumnAndParam(Column column, Param parameter)
+   public CompareColumnAndParam(Column column, Key key)
    {
       this.column = column;
-      this.parameter = parameter;
+      this.key = key;
    }
 
    public Column getColumn()
@@ -24,9 +24,9 @@ public abstract class CompareColumnAndParam extends CompareOperation
       return column;
    }
 
-   public Param getParameter()
+   public Key getKey()
    {
-      return parameter;
+      return key;
    }
 
    @Override

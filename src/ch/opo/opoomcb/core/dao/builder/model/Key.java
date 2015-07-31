@@ -10,18 +10,18 @@ package ch.opo.opoomcb.core.dao.builder.model;
 /**
  * @author Paweł Łabuda
  */
-public class Param implements Renderable
+public class Key implements Renderable
 {
-   private String name;
+   private String key;
 
-   public Param(String name)
+   public Key(String key)
    {
-      this.name = name;
+      this.key = key;
    }
 
-   public String getName()
+   public String getKey()
    {
-      return name;
+      return key;
    }
 
    @Override

@@ -8,15 +8,15 @@
 package ch.opo.opoomcb.core.dao.builder.model.operation.compare.param;
 
 import ch.opo.opoomcb.core.dao.builder.model.Column;
-import ch.opo.opoomcb.core.dao.builder.model.Param;
+import ch.opo.opoomcb.core.dao.builder.model.Key;
 
 /**
  * @author Paweł Łabuda
  */
 public class EqualsParam extends CompareColumnAndParam
 {
-   public EqualsParam(Column column, Param parameter)
+   public EqualsParam(Column column, Key key)
    {
-      super(column, parameter);
+      super(column, key);
    }
 }

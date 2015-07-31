@@ -6,9 +6,9 @@ import ch.opo.opoomcb.core.dao.builder.model.Key;
 /**
  * @author Paweł Łabuda
  */
-public class LessOrEqualsParam extends CompareColumnAndParam
+public class Contains extends CompareColumnAndParam
 {
-   public LessOrEqualsParam(Column column, Key key)
+   public Contains(Column column, Key key)
    {
       super(column, key);
    }

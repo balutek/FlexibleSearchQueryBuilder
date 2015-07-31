@@ -6,9 +6,9 @@ import ch.opo.opoomcb.core.dao.builder.model.Key;
 /**
  * @author Paweł Łabuda
  */
-public class LessOrEqualsParam extends CompareColumnAndParam
+public class StartWith extends CompareColumnAndParam
 {
-   public LessOrEqualsParam(Column column, Key key)
+   public StartWith(Column column, Key key)
    {
       super(column, key);
    }
