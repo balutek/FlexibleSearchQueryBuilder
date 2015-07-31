@@ -1,4 +1,4 @@
-package ch.opo.opoomcb.core.dao.builder.from;
+package ch.opo.opoomcb.core.dao.builder.builders.from;
 
 import ch.opo.opoomcb.core.dao.builder.model.Column;
 import ch.opo.opoomcb.core.dao.builder.model.Param;

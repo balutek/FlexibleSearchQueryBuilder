@@ -5,9 +5,9 @@
  *
  * This software is the confidential and proprietary information of OPO.
  */
-package ch.opo.opoomcb.core.dao.builder;
+package ch.opo.opoomcb.core.dao.builder.builders;
 
-import ch.opo.opoomcb.core.dao.builder.from.FromSegmentBuilder;
+import ch.opo.opoomcb.core.dao.builder.builders.from.FromSegmentBuilder;
 import ch.opo.opoomcb.core.dao.builder.model.*;
 import org.apache.commons.lang.StringUtils;
 

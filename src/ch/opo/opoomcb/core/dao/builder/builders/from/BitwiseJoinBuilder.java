@@ -1,8 +1,8 @@
-package ch.opo.opoomcb.core.dao.builder.from;
+package ch.opo.opoomcb.core.dao.builder.builders.from;
 
 import ch.opo.opoomcb.core.dao.builder.model.operation.bitwise.And;
 import ch.opo.opoomcb.core.dao.builder.model.operation.bitwise.Or;
-import ch.opo.opoomcb.core.dao.builder.whereSegment.CompareWhereBuilder;
+import ch.opo.opoomcb.core.dao.builder.builders.whereSegment.CompareWhereBuilder;
 
 /**
  * @author Paweł Łabuda

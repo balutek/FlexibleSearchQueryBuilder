@@ -5,12 +5,12 @@
  *
  * This software is the confidential and proprietary information of OPO.
  */
-package ch.opo.opoomcb.core.dao.builder.whereSegment;
+package ch.opo.opoomcb.core.dao.builder.builders.whereSegment;
 
 import ch.opo.opoomcb.core.dao.builder.model.QueryModel;
 import ch.opo.opoomcb.core.dao.builder.model.operation.bitwise.And;
 import ch.opo.opoomcb.core.dao.builder.model.operation.bitwise.Or;
-import ch.opo.opoomcb.core.dao.builder.orderBy.OrderBySegmentBuilder;
+import ch.opo.opoomcb.core.dao.builder.builders.orderBy.OrderBySegmentBuilder;
 
 /**
  * @author Paweł Łabuda

@@ -27,13 +27,14 @@ public enum QueryElements
    DISTINCT("DISTINCT"),
    AS("AS"),
    ON("ON"),
-   RESULTS_SEPARATOR(","),
+   COLUMN_SEPARATOR(","),
+   TABLE_SEPARATOR(","),
    ALIAS_SEPARATOR(":"),
-   KEY_PARAM_PREFIX("{"),
-   KEY_PARAM_SUFFIX("}"),
+   OPEN_CURLY_BRACKET("{"),
+   CLOSE_CURLY_BRACKET("}"),
    VALUE_PARAM_PREFIX("?"),
-   OPEN_BRACKET("("),
-   CLOSE_BRACKET(")");
+   OPEN_PARENTHESIS("("),
+   CLOSE_PARENTHESIS(")");
 
    private String code;
 

@@ -68,7 +68,7 @@ public class QueryRenderer
          renderColumn(columnIterator.next());
          if (columnIterator.hasNext())
          {
-            resultQuery.append(RESULTS_SEPARATOR);
+            resultQuery.append(TABLE_SEPARATOR);
          }
       }
    }
@@ -76,25 +76,25 @@ public class QueryRenderer
    private void renderColumn(Column column)
    {
       String columnAlias = column.getAlias();
-      resultQuery.append(KEY_PARAM_PREFIX);
+      resultQuery.append(OPEN_CURLY_BRACKET);
       if (StringUtils.isNotBlank(columnAlias))
       {
          resultQuery.append(columnAlias).append(ALIAS_SEPARATOR);
       }
-      resultQuery.append(column.getName()).append(KEY_PARAM_SUFFIX);
+      resultQuery.append(column.getName()).append(CLOSE_CURLY_BRACKET);
    }
 
    private void renderFrom(From from)
    {
       Table fromTable = from.getTable();
-      resultQuery.append(FROM).append(KEY_PARAM_PREFIX);
+      resultQuery.append(FROM).append(OPEN_CURLY_BRACKET);
       renderTable(fromTable);
       resultQuery.append(SPACE);
       for (Join join : from.getJoinList())
       {
          renderJoin(join);
       }
-      resultQuery.append(KEY_PARAM_SUFFIX);
+      resultQuery.append(CLOSE_CURLY_BRACKET);
    }
 
    private void renderTable(Table table)

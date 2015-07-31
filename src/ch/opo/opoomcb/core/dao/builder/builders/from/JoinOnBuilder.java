@@ -1,10 +1,10 @@
-package ch.opo.opoomcb.core.dao.builder.from;
+package ch.opo.opoomcb.core.dao.builder.builders.from;
 
 import ch.opo.opoomcb.core.dao.builder.model.On;
 import ch.opo.opoomcb.core.dao.builder.model.QueryModel;
 import ch.opo.opoomcb.core.dao.builder.model.operation.Bracket;
 import ch.opo.opoomcb.core.dao.builder.model.operation.Operation;
-import ch.opo.opoomcb.core.dao.builder.whereSegment.CompareWhereBuilder;
+import ch.opo.opoomcb.core.dao.builder.builders.whereSegment.CompareWhereBuilder;
 
 import java.util.ArrayList;
 import java.util.List;
