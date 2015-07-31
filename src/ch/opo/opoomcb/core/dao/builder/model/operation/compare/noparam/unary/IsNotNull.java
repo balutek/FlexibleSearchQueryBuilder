@@ -13,8 +13,9 @@ public class IsNotNull extends CompareOneColumn
    }
 
    @Override
-   public void render(StringBuilder builder)
+   public StringBuilder render(StringBuilder builder)
    {
 
+      return builder;
    }
 }

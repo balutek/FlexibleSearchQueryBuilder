@@ -5,5 +5,5 @@ package ch.opo.opoomcb.core.dao.builder.model;
  */
 public interface Renderable
 {
-   void render(StringBuilder builder);
+   StringBuilder render(StringBuilder builder);
 }

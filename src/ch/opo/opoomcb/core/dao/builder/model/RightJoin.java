@@ -18,8 +18,9 @@ public class RightJoin extends Join
    }
 
    @Override
-   public void render(StringBuilder builder)
+   public StringBuilder render(StringBuilder builder)
    {
       super.render(builder);
+      return builder;
    }
 }

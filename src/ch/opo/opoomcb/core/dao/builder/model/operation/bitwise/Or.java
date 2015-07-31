@@ -13,8 +13,9 @@ package ch.opo.opoomcb.core.dao.builder.model.operation.bitwise;
 public class Or extends BitwiseOperation
 {
    @Override
-   public void render(StringBuilder builder)
+   public StringBuilder render(StringBuilder builder)
    {
 
+      return builder;
    }
 }

@@ -94,7 +94,7 @@ public class Select implements Renderable
    }
 
    @Override
-   public void render(StringBuilder builder)
+   public StringBuilder render(StringBuilder builder)
    {
       builder.append(SELECT).append(SPACE);
 
@@ -111,9 +111,7 @@ public class Select implements Renderable
       {
          where.render(builder);
       }
-
-
-
+      return builder;
    }
 
    private void renderFromList(StringBuilder builder)

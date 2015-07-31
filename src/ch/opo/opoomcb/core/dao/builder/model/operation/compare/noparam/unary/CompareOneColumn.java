@@ -23,8 +23,9 @@ public abstract class CompareOneColumn extends CompareOperation
    }
 
    @Override
-   public void render(StringBuilder builder)
+   public StringBuilder render(StringBuilder builder)
    {
 
+      return builder;
    }
 }
