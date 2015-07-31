@@ -33,12 +33,6 @@ public class JoinOnBuilder
       bracketList = new ArrayList<Bracket>();
    }
 
-   public void insertOperationWithParam(Operation operation, String key, Object param)
-   {
-      queryModel.putQueryParam(key, param);
-      insertOperation(operation);
-   }
-
    public void insertOperation(Operation operation)
    {
       if (bracketList.size() > 0)
@@ -85,10 +79,5 @@ public class JoinOnBuilder
             new On(operationList)
          );
       return new CompareWhereBuilder(queryModel);
-   }
-
-   public String createKey(String name)
-   {
-      return queryModel.createKey(name);
    }
 }

@@ -6,9 +6,9 @@ import ch.opo.opoomcb.core.dao.builder.model.Key;
 /**
  * @author Paweł Łabuda
  */
-public class StartWith extends CompareColumnAndParam
+public class StartsWith extends CompareColumnAndParam
 {
-   public StartWith(Column column, Key key)
+   public StartsWith(Column column, Key key)
    {
       super(column, key);
    }

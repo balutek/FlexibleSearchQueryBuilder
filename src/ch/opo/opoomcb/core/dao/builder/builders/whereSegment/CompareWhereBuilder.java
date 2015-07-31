@@ -8,7 +8,7 @@
 package ch.opo.opoomcb.core.dao.builder.builders.whereSegment;
 
 import ch.opo.opoomcb.core.dao.builder.model.Column;
-import ch.opo.opoomcb.core.dao.builder.model.Param;
+import ch.opo.opoomcb.core.dao.builder.model.Key;
 import ch.opo.opoomcb.core.dao.builder.model.QueryModel;
 import ch.opo.opoomcb.core.dao.builder.model.operation.Operation;
 import ch.opo.opoomcb.core.dao.builder.model.operation.compare.noparam.binary.*;
@@ -42,11 +42,10 @@ public class CompareWhereBuilder
       return builder.getBitwiseWhereBuilder();
    }
 
-   public BitwiseWhereBuilder lessThan(String alias, String column, Object param)
+   public BitwiseWhereBuilder lessThan(String alias, String column, String key)
    {
-      String key = creteKey(column);
-      Operation operation = new LessParam(new Column(column, alias), new Param(key));
-      builder.insertOperationWithParam(operation, key, param);
+      Operation operation = new LessParam(new Column(column, alias), new Key(key));
+      builder.insertOperation(operation);
       return builder.getBitwiseWhereBuilder();
    }
 
@@ -57,11 +56,10 @@ public class CompareWhereBuilder
       return builder.getBitwiseWhereBuilder();
    }
 
-   public BitwiseWhereBuilder lessOrEqualsThan(String alias, String column, Object param)
+   public BitwiseWhereBuilder lessOrEqualsThan(String alias, String column, String key)
    {
-      String key = creteKey(column);
-      Operation operation = new LessOrEqualsParam(new Column(column, alias), new Param(key));
-      builder.insertOperationWithParam(operation, key, param);
+      Operation operation = new LessOrEqualsParam(new Column(column, alias), new Key(key));
+      builder.insertOperation(operation);
       return builder.getBitwiseWhereBuilder();
    }
 
@@ -72,11 +70,10 @@ public class CompareWhereBuilder
       return builder.getBitwiseWhereBuilder();
    }
 
-   public BitwiseWhereBuilder greaterThan(String alias, String column, Object param)
+   public BitwiseWhereBuilder greaterThan(String alias, String column, String key)
    {
-      String key = creteKey(column);
-      Operation operation = new GreaterParam(new Column(column, alias), new Param(key));
-      builder.insertOperationWithParam(operation, key, param);
+      Operation operation = new GreaterParam(new Column(column, alias), new Key(key));
+      builder.insertOperation(operation);
       return builder.getBitwiseWhereBuilder();
    }
 
@@ -87,11 +84,10 @@ public class CompareWhereBuilder
       return builder.getBitwiseWhereBuilder();
    }
 
-   public BitwiseWhereBuilder greaterOrEqualsThan(String alias, String column, Object param)
+   public BitwiseWhereBuilder greaterOrEqualsThan(String alias, String column, String key)
    {
-      String key = creteKey(column);
-      Operation operation = new GreaterOrEqualsParam(new Column(column, alias), new Param(key));
-      builder.insertOperationWithParam(operation, key, param);
+      Operation operation = new GreaterOrEqualsParam(new Column(column, alias), new Key(key));
+      builder.insertOperation(operation);
       return builder.getBitwiseWhereBuilder();
    }
 
@@ -102,43 +98,38 @@ public class CompareWhereBuilder
       return builder.getBitwiseWhereBuilder();
    }
 
-   public BitwiseWhereBuilder startWith(String alias, String column, String param)
+   public BitwiseWhereBuilder startsWith(String alias, String column, String key)
    {
-      String key = creteKey(column);
-      Operation operation = new Like(new Column(column, alias), new Param(key));
-      builder.insertOperationWithParam(operation, key, param + '%'); //todo chyba zminic to
+      Operation operation = new StartsWith(new Column(column, alias), new Key(key));
+      builder.insertOperation(operation);
       return builder.getBitwiseWhereBuilder();
    }
 
-   public BitwiseWhereBuilder endWith(String alias, String column, String param)
+   public BitwiseWhereBuilder endsWith(String alias, String column, String key)
    {
-      String key = creteKey(column);
-      Operation operation = new Like(new Column(column, alias), new Param(key));
-      builder.insertOperationWithParam(operation, key, '%' + param);
+      Operation operation = new EndsWith(new Column(column, alias), new Key(key));
+      builder.insertOperation(operation);
       return builder.getBitwiseWhereBuilder();
    }
 
-   public BitwiseWhereBuilder contains(String alias, String column, String param)
+   public BitwiseWhereBuilder contains(String alias, String column, String key)
    {
-      String key = creteKey(column);
-      Operation operation = new Like(new Column(column, alias), new Param(key));
-      builder.insertOperationWithParam(operation, key, '%' + param + '%');
+      Operation operation = new Contains(new Column(column, alias), new Key(key));
+      builder.insertOperation(operation);
       return builder.getBitwiseWhereBuilder();
    }
 
-   public BitwiseWhereBuilder like(String alias, String column, String param)
+   public BitwiseWhereBuilder like(String alias, String column, String key)
    {
-      String key = creteKey(column);
-      Operation operation = new Like(new Column(column, alias), new Param(key));
-      builder.insertOperationWithParam(operation, key, param);
+      Operation operation = new Like(new Column(column, alias), new Key(key));
+      builder.insertOperation(operation);
       return builder.getBitwiseWhereBuilder();
    }
 
-   public BitwiseWhereBuilder equals(String alias, String column, Object param)
+   public BitwiseWhereBuilder equals(String alias, String column, String key)
    {
-      String key = creteKey(column);
-      Operation operation = new EqualsParam(new Column(column, alias), new Param(key));
-      builder.insertOperationWithParam(operation, key, param);
+      Operation operation = new EqualsParam(new Column(column, alias), new Key(key));
+      builder.insertOperation(operation);
       return builder.getBitwiseWhereBuilder();
    }
 
@@ -149,11 +140,10 @@ public class CompareWhereBuilder
       return builder.getBitwiseWhereBuilder();
    }
 
-   public BitwiseWhereBuilder notEquals(String alias, String column, Object param)
+   public BitwiseWhereBuilder notEquals(String alias, String column, String key)
    {
-      String key = creteKey(column);
-      Operation operation = new NotEqualsParam(new Column(column, alias), new Param(key));
-      builder.insertOperationWithParam(operation, key, param);
+      Operation operation = new NotEqualsParam(new Column(column, alias), new Key(key));
+      builder.insertOperation(operation);
       return builder.getBitwiseWhereBuilder();
    }
 
@@ -164,11 +154,10 @@ public class CompareWhereBuilder
       return builder.getBitwiseWhereBuilder();
    }
 
-   public BitwiseWhereBuilder isIn(String alias, String column, Object param)
+   public BitwiseWhereBuilder isIn(String alias, String column, String key)
    {
-      String key = creteKey(column);
-      Operation operation = new In(new Column(column, alias), new Param(key));
-      builder.insertOperationWithParam(operation, key, param);
+      Operation operation = new In(new Column(column, alias), new Key(key));
+      builder.insertOperation(operation);
       return builder.getBitwiseWhereBuilder();
    }
 
@@ -176,10 +165,5 @@ public class CompareWhereBuilder
    {
       builder.openBracket();
       return builder.getCompareWhereBuilder();
-   }
-
-   private String creteKey(String name)
-   {
-      return builder.createKey(name);
    }
 }

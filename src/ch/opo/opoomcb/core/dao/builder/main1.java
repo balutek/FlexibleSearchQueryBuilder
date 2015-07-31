@@ -35,7 +35,7 @@ public class main1
                   .like("alias", "www", "lala")
                   .or()
                   .openBracket()
-                     .endWith("w", "wwwww", "huifdifjdkl")
+                     .endsWith("w", "wwwww", "huifdifjdkl")
                   .closeBracket()
                   .and()
                   .notEquals("alias", "ee", "key1")

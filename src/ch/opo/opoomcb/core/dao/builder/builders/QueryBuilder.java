@@ -24,7 +24,7 @@ public class QueryBuilder
    {
       if (StringUtils.isNotBlank(param))
       {
-         SELECT_ITEM = param; //todo to chyba nie powinno tu pyc
+         SELECT_ITEM = param; //todo to chyba nie powinno tu byc
       }
 
       queryModel = new QueryModel();

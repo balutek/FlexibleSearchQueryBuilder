@@ -1,7 +1,7 @@
 package ch.opo.opoomcb.core.dao.builder.builders.from;
 
 import ch.opo.opoomcb.core.dao.builder.model.Column;
-import ch.opo.opoomcb.core.dao.builder.model.Param;
+import ch.opo.opoomcb.core.dao.builder.model.Key;
 import ch.opo.opoomcb.core.dao.builder.model.QueryModel;
 import ch.opo.opoomcb.core.dao.builder.model.operation.Operation;
 import ch.opo.opoomcb.core.dao.builder.model.operation.compare.noparam.binary.*;
@@ -35,11 +35,10 @@ public class CompareJoinBuilder
       return builder.getBitwiseJoinBuilder();
    }
 
-   public BitwiseJoinBuilder lessThan(String alias, String column, Object param)
+   public BitwiseJoinBuilder lessThan(String alias, String column, String key)
    {
-      String key = creteKey(column);
-      Operation operation = new LessParam(new Column(column, alias), new Param(key));
-      builder.insertOperationWithParam(operation, key, param);
+      Operation operation = new LessParam(new Column(column, alias), new Key(key));
+      builder.insertOperation(operation);
       return builder.getBitwiseJoinBuilder();
    }
 
@@ -50,11 +49,10 @@ public class CompareJoinBuilder
       return builder.getBitwiseJoinBuilder();
    }
 
-   public BitwiseJoinBuilder lessOrEqualsThan(String alias, String column, Object param)
+   public BitwiseJoinBuilder lessOrEqualsThan(String alias, String column, String key)
    {
-      String key = creteKey(column);
-      Operation operation = new LessOrEqualsParam(new Column(column, alias), new Param(key));
-      builder.insertOperationWithParam(operation, key, param);
+      Operation operation = new LessOrEqualsParam(new Column(column, alias), new Key(key));
+      builder.insertOperation(operation);
       return builder.getBitwiseJoinBuilder();
    }
 
@@ -65,11 +63,10 @@ public class CompareJoinBuilder
       return builder.getBitwiseJoinBuilder();
    }
 
-   public BitwiseJoinBuilder greaterThan(String alias, String column, Object param)
+   public BitwiseJoinBuilder greaterThan(String alias, String column, String key)
    {
-      String key = creteKey(column);
-      Operation operation = new GreaterParam(new Column(column, alias), new Param(key));
-      builder.insertOperationWithParam(operation, key, param);
+      Operation operation = new GreaterParam(new Column(column, alias), new Key(key));
+      builder.insertOperation(operation);
       return builder.getBitwiseJoinBuilder();
    }
 
@@ -80,11 +77,10 @@ public class CompareJoinBuilder
       return builder.getBitwiseJoinBuilder();
    }
 
-   public BitwiseJoinBuilder greaterOrEqualsThan(String alias, String column, Object param)
+   public BitwiseJoinBuilder greaterOrEqualsThan(String alias, String column, String key)
    {
-      String key = creteKey(column);
-      Operation operation = new GreaterOrEqualsParam(new Column(column, alias), new Param(key));
-      builder.insertOperationWithParam(operation, key, param);
+      Operation operation = new GreaterOrEqualsParam(new Column(column, alias), new Key(key));
+      builder.insertOperation(operation);
       return builder.getBitwiseJoinBuilder();
    }
 
@@ -95,43 +91,38 @@ public class CompareJoinBuilder
       return builder.getBitwiseJoinBuilder();
    }
 
-   public BitwiseJoinBuilder startWith(String alias, String column, String param)
+   public BitwiseJoinBuilder startsWith(String alias, String column, String key)
    {
-      String key = creteKey(column);
-      Operation operation = new Like(new Column(column, alias), new Param(key));
-      builder.insertOperationWithParam(operation, key, param + '%');
+      Operation operation = new StartsWith(new Column(column, alias), new Key(key));
+      builder.insertOperation(operation);
       return builder.getBitwiseJoinBuilder();
    }
 
-   public BitwiseJoinBuilder endWith(String alias, String column, String param)
+   public BitwiseJoinBuilder endsWith(String alias, String column, String key)
    {
-      String key = creteKey(column);
-      Operation operation = new Like(new Column(column, alias), new Param(key));
-      builder.insertOperationWithParam(operation, key, '%' + param);
+      Operation operation = new EndsWith(new Column(column, alias), new Key(key));
+      builder.insertOperation(operation);
       return builder.getBitwiseJoinBuilder();
    }
 
-   public BitwiseJoinBuilder contains(String alias, String column, String param)
+   public BitwiseJoinBuilder contains(String alias, String column, String key)
    {
-      String key = creteKey(column);
-      Operation operation = new Like(new Column(column, alias), new Param(key));
-      builder.insertOperationWithParam(operation, key, '%' + param + '%');
+      Operation operation = new Contains(new Column(column, alias), new Key(key));
+      builder.insertOperation(operation);
       return builder.getBitwiseJoinBuilder();
    }
 
-   public BitwiseJoinBuilder like(String alias, String column, String param)
+   public BitwiseJoinBuilder like(String alias, String column, String key)
    {
-      String key = creteKey(column);
-      Operation operation = new Like(new Column(column, alias), new Param(key));
-      builder.insertOperationWithParam(operation, key, param);
+      Operation operation = new Like(new Column(column, alias), new Key(key));
+      builder.insertOperation(operation);
       return builder.getBitwiseJoinBuilder();
    }
 
-   public BitwiseJoinBuilder equals(String alias, String column, Object param)
+   public BitwiseJoinBuilder equals(String alias, String column, String key)
    {
-      String key = creteKey(column);
-      Operation operation = new EqualsParam(new Column(column, alias), new Param(key));
-      builder.insertOperationWithParam(operation, key, param);
+      Operation operation = new EqualsParam(new Column(column, alias), new Key(key));
+      builder.insertOperation(operation);
       return builder.getBitwiseJoinBuilder();
    }
 
@@ -142,11 +133,10 @@ public class CompareJoinBuilder
       return builder.getBitwiseJoinBuilder();
    }
 
-   public BitwiseJoinBuilder notEquals(String alias, String column, Object param)
+   public BitwiseJoinBuilder notEquals(String alias, String column, String key)
    {
-      String key = creteKey(column);
-      Operation operation = new NotEqualsParam(new Column(column, alias), new Param(key));
-      builder.insertOperationWithParam(operation, key, param);
+      Operation operation = new NotEqualsParam(new Column(column, alias), new Key(key));
+      builder.insertOperation(operation);
       return builder.getBitwiseJoinBuilder();
    }
 
@@ -157,11 +147,10 @@ public class CompareJoinBuilder
       return builder.getBitwiseJoinBuilder();
    }
 
-   public BitwiseJoinBuilder isIn(String alias, String column, Object param)
+   public BitwiseJoinBuilder isIn(String alias, String column, String key)
    {
-      String key = creteKey(column);
-      Operation operation = new In(new Column(column, alias), new Param(key));
-      builder.insertOperationWithParam(operation, key, param);
+      Operation operation = new In(new Column(column, alias), new Key(key));
+      builder.insertOperation(operation);
       return builder.getBitwiseJoinBuilder();
    }
 
@@ -169,10 +158,5 @@ public class CompareJoinBuilder
    {
       builder.openBracket();
       return builder.getCompareJoinBuilder();
-   }
-
-   private String creteKey(String name)
-   {
-      return builder.createKey(name);
    }
 }

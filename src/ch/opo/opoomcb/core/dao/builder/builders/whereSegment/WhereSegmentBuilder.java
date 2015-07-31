@@ -45,12 +45,6 @@ public class WhereSegmentBuilder
       this.queryModel.getLastSelect().setWhere(new Where());
    }
 
-   public void insertOperationWithParam(Operation operation, String key, Object param)
-   {
-      queryModel.putQueryParam(key, param);
-      insertOperation(operation);
-   }
-
    public void insertOperation(Operation operation)
    {
       if (bracketList.size() > 0)
@@ -81,11 +75,6 @@ public class WhereSegmentBuilder
    public QueryModel getQuery()
    {
       return queryModel;
-   }
-
-   public String createKey(String name)
-   {
-      return queryModel.createKey(name);
    }
 
    public CompareWhereBuilder getCompareWhereBuilder()

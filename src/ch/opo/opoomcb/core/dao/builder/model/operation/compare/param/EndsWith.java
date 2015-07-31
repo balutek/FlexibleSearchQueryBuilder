@@ -6,9 +6,9 @@ import ch.opo.opoomcb.core.dao.builder.model.Key;
 /**
  * @author Paweł Łabuda
  */
-public class EndWith extends CompareColumnAndParam
+public class EndsWith extends CompareColumnAndParam
 {
-   public EndWith(Column column, Key key)
+   public EndsWith(Column column, Key key)
    {
       super(column, key);
    }
