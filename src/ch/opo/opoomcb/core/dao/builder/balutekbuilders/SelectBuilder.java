@@ -50,7 +50,8 @@ public class SelectBuilder extends AbstractBuilder<Select>
    {
       From from = new From(new Table(typecode));
       constructedObject.addFrom(from);
-      previousBuilders.add(this);
+      previousBuilders.addFirst(this);
+      fromBuilder = new FromBuilder(previousBuilders);
       fromBuilder.setConstructedObject(from);
       return fromBuilder;
    }
@@ -59,7 +60,7 @@ public class SelectBuilder extends AbstractBuilder<Select>
    {
       From from = new From(new Table(typecode, alias));
       constructedObject.addFrom(from);
-      previousBuilders.add(this);
+      previousBuilders.addFirst(this);
       fromBuilder = new FromBuilder(previousBuilders);
       fromBuilder.setConstructedObject(from);
       return fromBuilder;

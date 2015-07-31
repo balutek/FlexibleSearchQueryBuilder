@@ -24,7 +24,7 @@ public class Query extends AbstractBuilder<QueryModel>
    private Query()
    {
       super(new LinkedList<AbstractBuilder>());
-
+      previousBuilders.addFirst(this);
       selectBuilder = new SelectBuilder(previousBuilders);
    }
 
@@ -37,6 +37,7 @@ public class Query extends AbstractBuilder<QueryModel>
       Query query = new Query();
       query.setConstructedObject(queryModel);
       query.getSelectBuilder().setConstructedObject(select);
+
       return query.getSelectBuilder();
    }
 

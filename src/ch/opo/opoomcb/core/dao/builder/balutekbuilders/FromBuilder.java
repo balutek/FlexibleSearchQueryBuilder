@@ -24,6 +24,7 @@ public class FromBuilder extends AbstractBuilder<From>
       Join join = new Join(new Table(typecode));
       constructedObject.addJoin(join);
       joinBuilder = new JoinBuilder(previousBuilders);
+      previousBuilders.addFirst(this);
       joinBuilder.setConstructedObject(join);
       return joinBuilder;
    }
@@ -33,6 +34,7 @@ public class FromBuilder extends AbstractBuilder<From>
       Join join = new Join(new Table(typecode, alias));
       constructedObject.addJoin(join);
       joinBuilder = new JoinBuilder(previousBuilders);
+      previousBuilders.addFirst(this);
       joinBuilder.setConstructedObject(join);
       return joinBuilder;
    }

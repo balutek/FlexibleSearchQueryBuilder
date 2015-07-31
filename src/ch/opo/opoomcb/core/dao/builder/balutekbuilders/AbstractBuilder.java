@@ -36,4 +36,9 @@ public abstract class AbstractBuilder<CONSTRUCTEDOBJECT extends Renderable>
       return null;
    }
 
+   protected void removeLastUsedBuilder()
+   {
+      previousBuilders.removeFirst();
+   }
+
 }
