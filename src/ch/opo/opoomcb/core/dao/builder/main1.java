@@ -7,6 +7,7 @@
  */
 package ch.opo.opoomcb.core.dao.builder;
 
+import ch.opo.opoomcb.core.dao.builder.balutekbuilders.Query;
 import ch.opo.opoomcb.core.dao.builder.builders.QueryBuilder;
 import ch.opo.opoomcb.core.dao.builder.model.QueryModel;
 
@@ -17,42 +18,45 @@ public class main1
 {
    public static void main(String[] arg)
    {
-      QueryModel queryModel =
-         QueryBuilder
-            .selectDistinct()
-            .from("p", "Product")
-               .leftJoin("w", "Category")
-                  .on()
-                     .openBracket()
-                        .equals("p", "Product", "w", "Category")
-                        .and()
-                        .isNotNull("p", "Product")
-                     .closeBracket()
-                     .and()
-                     .isNull("ww", "aaaaa")
-            .where()
-               .openBracket()
-                  .like("alias", "www", "lala")
-                  .or()
-                  .openBracket()
-                     .endsWith("w", "wwwww", "huifdifjdkl")
-                  .closeBracket()
-                  .and()
-                  .notEquals("alias", "ee", "key1")
-               .closeBracket()
-               .and()
-               .notEquals("alias", "ee", "key2")
-               .or()
-               .isIn("alias", "aaa", "key3")
-               .orderBy("alias1","www")
-            .getQuery();
+//      QueryModel queryModel =
+//         QueryBuilder
+//            .selectDistinct()
+//            .from("p", "Product")
+//               .leftJoin("w", "Category")
+//                  .on()
+//                     .openBracket()
+//                        .equals("p", "Product", "w", "Category")
+//                        .and()
+//                        .isNotNull("p", "Product")
+//                     .closeBracket()
+//                     .and()
+//                     .isNull("ww", "aaaaa")
+//            .where()
+//               .openBracket()
+//                  .like("alias", "www", "lala")
+//                  .or()
+//                  .openBracket()
+//                     .endsWith("w", "wwwww", "huifdifjdkl")
+//                  .closeBracket()
+//                  .and()
+//                  .notEquals("alias", "ee", "key1")
+//               .closeBracket()
+//               .and()
+//               .notEquals("alias", "ee", "key2")
+//               .or()
+//               .isIn("alias", "aaa", "key3")
+//               .orderBy("alias1", "www")
+//            .getQuery();
 
-      if (queryModel == null)
-      {
-         for (int i = 0; i < 10; ++i)
-         {
-            System.out.println("lala");
-         }
-      }
+//      if (queryModel == null)
+//      {
+//         for (int i = 0; i < 10; ++i)
+//         {
+//            System.out.println("lala");
+//         }
+//      }
+
+//      Query.select().pk().from("").join("")
+
    }
 }

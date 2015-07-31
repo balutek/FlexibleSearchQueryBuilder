@@ -17,6 +17,10 @@ public class Table implements Renderable
 
    private String alias;
 
+   public Table(String name)
+   {
+      this.name = name;
+   }
    public Table(String name, String alias)
    {
       this.name = name;

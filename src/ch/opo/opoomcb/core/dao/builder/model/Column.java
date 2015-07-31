@@ -16,6 +16,11 @@ public class Column implements Renderable
 
    private String alias;
 
+   public Column(String name)
+   {
+      this.name = name;
+   }
+
    public Column(String name, String alias)
    {
       this.name = name;

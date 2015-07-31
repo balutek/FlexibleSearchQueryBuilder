@@ -11,69 +11,43 @@ import ch.opo.opoomcb.core.dao.builder.balutekbuilders.from.FromSegmentBuilder;
 import ch.opo.opoomcb.core.dao.builder.model.*;
 import org.apache.commons.lang.StringUtils;
 
+import java.util.LinkedList;
+import java.util.List;
+
 /**
  * @author Paweł Łabuda
  */
-public class Query
+public class Query extends AbstractBuilder<QueryModel>
 {
-   private String SELECT_ITEM = "pk";
+   private SelectBuilder selectBuilder;
 
-   private QueryModel queryModel;
-
-   private Query(String param, String alias, boolean distinct)
+   private Query()
    {
-      if (StringUtils.isNotBlank(param))
-      {
-         SELECT_ITEM = param; //todo to chyba nie powinno tu pyc
-      }
+      super(new LinkedList<AbstractBuilder>());
 
-      queryModel = new QueryModel();
+      selectBuilder = new SelectBuilder(previousBuilders);
+   }
 
+   public static SelectBuilder select()
+   {
+      QueryModel queryModel = new QueryModel();
       Select select = new Select();
-      select.setDistinct(distinct);
-      select.addColumn(new Column(param, alias));
       queryModel.setSelect(select);
+
+      Query query = new Query();
+      query.setConstructedObject(queryModel);
+      query.getSelectBuilder().setConstructedObject(select);
+      return query.getSelectBuilder();
    }
 
-   public static Query select()
+   public SelectBuilder getSelectBuilder()
    {
-      return new Query(null, null, false);
+      return selectBuilder;
    }
 
-   public static Query select(String param)
+   public String build()
    {
-      return new Query(param, null, false);
+      return constructedObject.render(new StringBuilder()).toString();
    }
 
-   public static Query select(String alias, String param)
-   {
-      return new Query(param, alias, true);
-   }
-
-   public static Query selectDistinct()
-   {
-      return new Query(null, null, true);
-   }
-
-   public static Query selectDistinct(String param)
-   {
-      return new Query(param, null, true);
-   }
-
-   public static Query selectDistinct(String alias, String param)
-   {
-      return new Query(param, alias, true);
-   }
-
-   public FromSegmentBuilder from(String from)
-   {
-      queryModel.getLastSelect().addFrom(new From(new Table(from, null)));
-      return new FromSegmentBuilder(queryModel);
-   }
-
-   public FromSegmentBuilder from(String alias, String from)
-   {
-      queryModel.getLastSelect().addFrom(new From(new Table(from, alias)));
-      return new FromSegmentBuilder(queryModel);
-   }
 }
