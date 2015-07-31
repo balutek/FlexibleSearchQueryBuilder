@@ -5,10 +5,10 @@
  *
  * This software is the confidential and proprietary information of OPO.
  */
-package ch.opo.opoomcb.core.dao.builder.from;
+package ch.opo.opoomcb.core.dao.builder.builders.from;
 
 import ch.opo.opoomcb.core.dao.builder.model.*;
-import ch.opo.opoomcb.core.dao.builder.whereSegment.CompareWhereBuilder;
+import ch.opo.opoomcb.core.dao.builder.builders.whereSegment.CompareWhereBuilder;
 
 /**
  * @author Paweł Łabuda

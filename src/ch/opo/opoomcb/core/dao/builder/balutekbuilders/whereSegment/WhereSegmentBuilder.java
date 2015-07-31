@@ -5,14 +5,14 @@
  *
  * This software is the confidential and proprietary information of OPO.
  */
-package ch.opo.opoomcb.core.dao.builder.whereSegment;
+package ch.opo.opoomcb.core.dao.builder.balutekbuilders.whereSegment;
 
+import ch.opo.opoomcb.core.dao.builder.balutekbuilders.orderBy.OrderBySegmentBuilder;
 import ch.opo.opoomcb.core.dao.builder.model.OrderBy;
 import ch.opo.opoomcb.core.dao.builder.model.QueryModel;
 import ch.opo.opoomcb.core.dao.builder.model.Where;
 import ch.opo.opoomcb.core.dao.builder.model.operation.Bracket;
 import ch.opo.opoomcb.core.dao.builder.model.operation.Operation;
-import ch.opo.opoomcb.core.dao.builder.orderBy.OrderBySegmentBuilder;
 
 import java.util.ArrayList;
 import java.util.List;

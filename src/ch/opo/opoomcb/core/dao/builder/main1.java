@@ -7,6 +7,7 @@
  */
 package ch.opo.opoomcb.core.dao.builder;
 
+import ch.opo.opoomcb.core.dao.builder.builders.QueryBuilder;
 import ch.opo.opoomcb.core.dao.builder.model.QueryModel;
 
 /**

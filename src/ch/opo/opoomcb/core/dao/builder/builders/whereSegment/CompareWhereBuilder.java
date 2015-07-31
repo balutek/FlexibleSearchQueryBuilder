@@ -5,7 +5,7 @@
  *
  * This software is the confidential and proprietary information of OPO.
  */
-package ch.opo.opoomcb.core.dao.builder.whereSegment;
+package ch.opo.opoomcb.core.dao.builder.builders.whereSegment;
 
 import ch.opo.opoomcb.core.dao.builder.model.Column;
 import ch.opo.opoomcb.core.dao.builder.model.Param;

@@ -98,24 +98,40 @@ public class Select implements Renderable
    {
       builder.append(SELECT).append(SPACE);
 
-      renderColumns(builder);
+      if (distinct)
+      {
+         builder.append(DISTINCT).append(SPACE);
+      }
 
-      builder.append(SPACE).append(FROM);
+      renderColumnList(builder);
+      builder.append(SPACE).append(FROM).append(SPACE);
+      renderFromList(builder);
 
+      if (where != null)
+      {
+         where.render(builder);
+      }
+
+
+
+   }
+
+   private void renderFromList(StringBuilder builder)
+   {
       Iterator<From> fromIterator = fromList.iterator();
       while (fromIterator.hasNext())
       {
-         builder.append(KEY_PARAM_PREFIX);
+         builder.append(OPEN_CURLY_BRACKET);
          fromIterator.next().render(builder);
-         builder.append(KEY_PARAM_SUFFIX);
+         builder.append(CLOSE_CURLY_BRACKET);
          if (fromIterator.hasNext())
          {
-            builder.append(RESULTS_SEPARATOR);
+            builder.append(TABLE_SEPARATOR);
          }
       }
    }
 
-   private void renderColumns(StringBuilder builder)
+   private void renderColumnList(StringBuilder builder)
    {
       Iterator<Column> columnIterator = columnList.iterator();
       while (columnIterator.hasNext())
@@ -123,8 +139,19 @@ public class Select implements Renderable
          columnIterator.next().render(builder);
          if (columnIterator.hasNext())
          {
-            builder.append(RESULTS_SEPARATOR);
+            builder.append(COLUMN_SEPARATOR);
          }
       }
+
+//      new FromSegmentBuilder()
+
+      StringBuilder executed = executed();
    }
+
+   private <T> T executed()
+   {
+      return (T) new Object();
+   }
+
+
 }

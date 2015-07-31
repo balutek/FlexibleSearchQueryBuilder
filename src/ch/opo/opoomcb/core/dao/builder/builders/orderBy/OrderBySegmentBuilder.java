@@ -5,24 +5,24 @@
  *
  * This software is the confidential and proprietary information of OPO.
  */
-package ch.opo.opoomcb.core.dao.builder.from;
+package ch.opo.opoomcb.core.dao.builder.builders.orderBy;
 
 import ch.opo.opoomcb.core.dao.builder.model.QueryModel;
 
 /**
  * @author Paweł Łabuda
  */
-public class JoinBuilder
+public class OrderBySegmentBuilder // todo hire should be DESC and ASC
 {
    private QueryModel queryModel;
 
-   public JoinBuilder(QueryModel queryModel)
+   public OrderBySegmentBuilder(QueryModel queryModel)
    {
       this.queryModel = queryModel;
    }
 
-   public CompareJoinBuilder on()
+   public QueryModel getQuery()
    {
-      return new CompareJoinBuilder(queryModel);
+      return queryModel;
    }
 }
