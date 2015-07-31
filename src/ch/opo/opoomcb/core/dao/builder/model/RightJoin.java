@@ -7,6 +7,8 @@
  */
 package ch.opo.opoomcb.core.dao.builder.model;
 
+import static ch.opo.opoomcb.core.dao.builder.constants.QueryElements.*;
+
 /**
  * @author Paweł Łabuda
  */
@@ -18,9 +20,10 @@ public class RightJoin extends Join
    }
 
    @Override
-   public StringBuilder render(StringBuilder builder)
+   public void render(StringBuilder builder)
    {
+      builder.append(RIGHT)
+         .append(SPACE);
       super.render(builder);
-      return builder;
    }
 }

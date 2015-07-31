@@ -31,12 +31,10 @@ public class main1
                      .and()
                      .isNull("ww", "aaaaa")
             .where()
+               .like("alias", "www", "lala")
+               .or()
                .openBracket()
-                  .like("alias", "www", "lala")
-                  .or()
-                  .openBracket()
-                     .endsWith("w", "wwwww", "huifdifjdkl")
-                  .closeBracket()
+                  .endsWith("w", "wwwww", "key4")
                   .and()
                   .notEquals("alias", "ee", "key1")
                .closeBracket()
@@ -47,12 +45,23 @@ public class main1
                .orderBy("alias1","www")
             .getQuery();
 
-      if (queryModel == null)
-      {
-         for (int i = 0; i < 10; ++i)
-         {
-            System.out.println("lala");
-         }
-      }
+      System.out.println(queryModel.buildQuery() + "\n\n");
+
+      queryModel =
+         QueryBuilder
+            .selectDistinct()
+            .from("p", "Product")
+               .leftJoin("w", "Category")
+                  .on()
+                    .equals("p", "Product", "w", "Category")
+            .where()
+            .like("alias", "www", "lala")
+            .or()
+            .notEquals("alias", "ee", "alias2", "columnNAME")
+            .or()
+            .isIn("alias", "aaa", "key3")
+            .getQuery();
+
+      System.out.println(queryModel.buildQuery());
    }
 }

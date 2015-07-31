@@ -18,4 +18,6 @@ public abstract class CompareOperation extends Operation
    {
       super();
    }
+
+   protected abstract String getComparisonOperation();
 }

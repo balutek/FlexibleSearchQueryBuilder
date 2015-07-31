@@ -19,15 +19,9 @@ public class Key implements Renderable
       this.key = key;
    }
 
-   public String getKey()
-   {
-      return key;
-   }
-
    @Override
-   public StringBuilder render(StringBuilder builder)
+   public void render(StringBuilder builder)
    {
-
-      return builder;
+      builder.append(key);
    }
 }

@@ -39,9 +39,15 @@ public class QueryModel implements Renderable
    }
 
    @Override
-   public StringBuilder render(StringBuilder builder)
+   public void render(StringBuilder builder)
    {
+      select.render(builder);
+   }
 
-      return builder;
+   public String buildQuery()
+   {
+      StringBuilder builder = new StringBuilder();
+      render(builder);
+      return builder.toString();
    }
 }

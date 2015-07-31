@@ -8,7 +8,11 @@
 package ch.opo.opoomcb.core.dao.builder.model.operation;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
+
+import static ch.opo.opoomcb.core.dao.builder.constants.QueryElements.*;
+
 
 /**
  * @author Paweł Łabuda
@@ -35,9 +39,19 @@ public class Bracket extends Operation
    }
 
    @Override
-   public StringBuilder render(StringBuilder builder)
+   public void render(StringBuilder builder)
    {
+      builder.append(OPEN_PARENTHESIS);
 
-      return builder;
+      Iterator<Operation> iterator = operationList.iterator();
+      while (iterator.hasNext())
+      {
+         iterator.next().render(builder);
+         if (iterator.hasNext())
+         {
+            builder.append(SPACE);
+         }
+      }
+      builder.append(CLOSE_PARENTHESIS);
    }
 }

@@ -1,17 +1,26 @@
 package ch.opo.opoomcb.core.dao.builder.model;
 
+import static ch.opo.opoomcb.core.dao.builder.constants.QueryElements.*;
+
+
 /**
  * @author Paweł Łabuda
  */
-public class OrderBy
+public class OrderBy implements Renderable
 {
-   private String alias;
+   private Column column;
 
-   private String column;
-
-   public OrderBy(String column, String alias)
+   public OrderBy(Column column)
    {
       this.column = column;
-      this.alias = alias;
+   }
+
+   @Override
+   public void render(StringBuilder builder)
+   {
+      builder.append(SPACE)
+         .append(ORDER_BY)
+         .append(SPACE);
+      column.render(builder);
    }
 }

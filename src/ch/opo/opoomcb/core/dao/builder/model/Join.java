@@ -7,6 +7,8 @@
  */
 package ch.opo.opoomcb.core.dao.builder.model;
 
+import static ch.opo.opoomcb.core.dao.builder.constants.QueryElements.*;
+
 /**
  * @author Paweł Łabuda
  */
@@ -37,9 +39,12 @@ public class Join implements Renderable
    }
 
    @Override
-   public StringBuilder render(StringBuilder builder)
+   public void render(StringBuilder builder)
    {
-
-      return builder;
+      builder.append(JOIN)
+         .append(SPACE);
+      table.render(builder);
+      builder.append(SPACE);
+      on.render(builder);
    }
 }

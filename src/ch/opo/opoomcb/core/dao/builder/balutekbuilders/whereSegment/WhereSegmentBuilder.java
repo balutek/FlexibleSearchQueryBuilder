@@ -8,6 +8,7 @@
 package ch.opo.opoomcb.core.dao.builder.balutekbuilders.whereSegment;
 
 import ch.opo.opoomcb.core.dao.builder.balutekbuilders.orderBy.OrderBySegmentBuilder;
+import ch.opo.opoomcb.core.dao.builder.model.Column;
 import ch.opo.opoomcb.core.dao.builder.model.OrderBy;
 import ch.opo.opoomcb.core.dao.builder.model.QueryModel;
 import ch.opo.opoomcb.core.dao.builder.model.Where;
@@ -90,7 +91,7 @@ public class WhereSegmentBuilder
    public OrderBySegmentBuilder getOrderByBuilder(String alias, String column)
    {
       queryModel.getLastWhere().setOperationList(operationList);
-      queryModel.getLastSelect().setOrderBy(new OrderBy(column, alias));
+      queryModel.getLastSelect().setOrderBy(new OrderBy(new Column(column, alias)));
       if (orderByBuilder == null)
       {
          orderByBuilder = new OrderBySegmentBuilder(queryModel);

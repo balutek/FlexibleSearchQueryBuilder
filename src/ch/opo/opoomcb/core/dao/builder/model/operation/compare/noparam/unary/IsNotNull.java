@@ -1,5 +1,6 @@
 package ch.opo.opoomcb.core.dao.builder.model.operation.compare.noparam.unary;
 
+import ch.opo.opoomcb.core.dao.builder.constants.QueryElements;
 import ch.opo.opoomcb.core.dao.builder.model.Column;
 
 /**
@@ -13,9 +14,8 @@ public class IsNotNull extends CompareOneColumn
    }
 
    @Override
-   public StringBuilder render(StringBuilder builder)
+   protected String getComparisonOperation()
    {
-
-      return builder;
+      return QueryElements.IS_NOT_NULL.toString();
    }
 }

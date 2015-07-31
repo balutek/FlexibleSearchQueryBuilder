@@ -10,6 +10,8 @@ package ch.opo.opoomcb.core.dao.builder.model;
 import java.util.ArrayList;
 import java.util.List;
 
+import static ch.opo.opoomcb.core.dao.builder.constants.QueryElements.*;
+
 /**
  * @author Paweł Łabuda
  */
@@ -50,9 +52,16 @@ public class From implements Renderable
    }
 
    @Override
-   public StringBuilder render(StringBuilder builder)
+   public void render(StringBuilder builder)
    {
-
-      return builder;
+      builder.append(OPEN_CURLY_BRACKET);
+      table.render(builder);
+      for (Join join : joinList)
+      {
+         builder.append(SPACE);
+         join.render(builder);
+      }
+      builder.append(CLOSE_CURLY_BRACKET)
+         .append(SPACE);
    }
 }

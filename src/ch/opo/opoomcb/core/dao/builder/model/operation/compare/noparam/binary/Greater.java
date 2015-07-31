@@ -11,4 +11,10 @@ public class Greater extends CompareTwoColumns
    {
       super(firstColumn, secondColumn);
    }
+
+   @Override
+   protected String getComparisonOperation()
+   {
+      return ">";
+   }
 }
