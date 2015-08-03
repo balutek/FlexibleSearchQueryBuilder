@@ -91,6 +91,8 @@ public class WhereSegmentBuilder
 
    public OrderBySegmentBuilder getOrderByBuilder(String alias, String column)
    {
+      closeAllBrackets();
+
       queryModel.getLastWhere().setOperationList(operationList);
       queryModel.getLastSelect().setOrderBy(new OrderBy(new Column(column, alias)));
       if (orderByBuilder == null)
@@ -99,5 +101,13 @@ public class WhereSegmentBuilder
       }
 
       return orderByBuilder;
+   }
+
+   private void closeAllBrackets()
+   {
+      while (bracketList.size() > 0)
+      {
+         closeBracket();
+      }
    }
 }

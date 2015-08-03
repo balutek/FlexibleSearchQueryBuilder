@@ -35,34 +35,44 @@ public class QueryBuilder
       queryModel.setSelect(select);
    }
 
-   public static QueryBuilder select()
+   public static QueryBuilder selectPK()
    {
       return new QueryBuilder(null, null, false);
    }
 
-   public static QueryBuilder select(String param)
+   public static QueryBuilder selectPK(String alias)
    {
-      return new QueryBuilder(param, null, false);
+      return new QueryBuilder(null, alias, false);
    }
 
-   public static QueryBuilder select(String alias, String param)
+   public static QueryBuilder select(String column)
    {
-      return new QueryBuilder(param, alias, true);
+      return new QueryBuilder(column, null, false);
    }
 
-   public static QueryBuilder selectDistinct()
+   public static QueryBuilder select(String alias, String column)
+   {
+      return new QueryBuilder(column, alias, true);
+   }
+
+   public static QueryBuilder selectDistinctPK()
    {
       return new QueryBuilder(null, null, true);
    }
 
-   public static QueryBuilder selectDistinct(String param)
+   public static QueryBuilder selectDistinctPK(String alias)
    {
-      return new QueryBuilder(param, null, true);
+      return new QueryBuilder(null, alias, true);
    }
 
-   public static QueryBuilder selectDistinct(String alias, String param)
+   public static QueryBuilder selectDistinct(String column)
    {
-      return new QueryBuilder(param, alias, true);
+      return new QueryBuilder(column, null, true);
+   }
+
+   public static QueryBuilder selectDistinct(String alias, String column)
+   {
+      return new QueryBuilder(column, alias, true);
    }
 
    public FromSegmentBuilder from(String from)

@@ -23,19 +23,9 @@ public class Join implements Renderable
       this.table = table;
    }
 
-   public Table getTable()
-   {
-      return table;
-   }
-
    public void setOn(On on)
    {
       this.on = on;
-   }
-
-   public On getOn()
-   {
-      return on;
    }
 
    @Override

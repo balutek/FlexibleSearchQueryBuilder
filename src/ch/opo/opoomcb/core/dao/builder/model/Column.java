@@ -7,6 +7,8 @@
  */
 package ch.opo.opoomcb.core.dao.builder.model;
 
+import org.apache.commons.lang.StringUtils;
+
 import static ch.opo.opoomcb.core.dao.builder.constants.QueryElements.*;
 
 /**
@@ -33,7 +35,7 @@ public class Column implements Renderable
    public void render(StringBuilder builder)
    {
       builder.append(OPEN_CURLY_BRACKET);
-      if (alias != null)
+      if (StringUtils.isNotBlank(alias))
       {
          builder.append(alias)
             .append(ALIAS_SEPARATOR);

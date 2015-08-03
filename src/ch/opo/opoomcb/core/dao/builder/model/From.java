@@ -27,11 +27,6 @@ public class From implements Renderable
       joinList = new ArrayList<Join>();
    }
 
-   public Table getTable()
-   {
-      return table;
-   }
-
    public void addJoin(Join join)
    {
       joinList.add(join);
@@ -44,11 +39,6 @@ public class From implements Renderable
          return joinList.get(joinList.size() - 1);
       }
       return null;
-   }
-
-   public List<Join> getJoinList()
-   {
-      return joinList;
    }
 
    @Override

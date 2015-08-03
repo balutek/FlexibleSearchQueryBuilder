@@ -32,11 +32,6 @@ public class Where implements Renderable
       this.operationList = operationList;
    }
 
-   public List<Operation> getOperationList()
-   {
-      return operationList;
-   }
-
    @Override
    public void render(StringBuilder builder)
    {

@@ -72,6 +72,8 @@ public class JoinOnBuilder
 
    public CompareWhereBuilder getCompareWhereBuilder()
    {
+      closeAllBrackets();
+
       queryModel
          .getLastFrom()
          .getLastJoin()
@@ -79,5 +81,13 @@ public class JoinOnBuilder
             new On(operationList)
          );
       return new CompareWhereBuilder(queryModel);
+   }
+
+   private void closeAllBrackets()
+   {
+      while (bracketList.size() > 0)
+      {
+         closeBracket();
+      }
    }
 }

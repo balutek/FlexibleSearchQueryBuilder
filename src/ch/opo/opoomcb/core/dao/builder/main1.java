@@ -19,7 +19,7 @@ public class main1
    {
       QueryModel queryModel =
          QueryBuilder
-            .selectDistinct()
+            .selectDistinctPK()
             .from("p", "Product")
                .leftJoin("w", "Category")
                   .on()
@@ -36,7 +36,7 @@ public class main1
                .openBracket()
                   .like("w", "wwwww", "key4")
                   .and()
-                  .notEquals("alias", "ee", "key1")
+                  .notEquals(null, "ee", "key1")
                .closeBracket()
                .and()
                .notEquals("alias", "ee", "key2")
@@ -49,7 +49,7 @@ public class main1
 
       queryModel =
          QueryBuilder
-            .selectDistinct()
+            .select("column")
             .from("p", "Product")
                .leftJoin("w", "Category")
                   .on()

@@ -100,17 +100,6 @@ public class Select implements Renderable
    private void renderFromList(StringBuilder builder)
    {
       fromList.get(0).render(builder);
-//      Iterator<From> fromIterator = fromList.iterator();
-//      while (fromIterator.hasNext())
-//      {
-//         builder.append(OPEN_CURLY_BRACKET);
-//         fromIterator.next().render(builder);
-//         builder.append(CLOSE_CURLY_BRACKET);
-//         if (fromIterator.hasNext())
-//         {
-//            builder.append(TABLE_SEPARATOR);
-//         }
-//      }
    }
 
    private void renderColumnList(StringBuilder builder)
@@ -124,16 +113,5 @@ public class Select implements Renderable
             builder.append(COLUMN_SEPARATOR);
          }
       }
-
-//      new FromSegmentBuilder()
-
-//      StringBuilder executed = executed();
    }
-
-   private <T> T executed()
-   {
-      return (T) new Object();
-   }
-
-
 }

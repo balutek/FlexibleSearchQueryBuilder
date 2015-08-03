@@ -31,11 +31,6 @@ public class On implements Renderable
       this.operationList = operationList;
    }
 
-   public void addOperation(Operation operation)
-   {
-      operationList.add(operation);
-   }
-
    @Override
    public void render(StringBuilder builder)
    {
