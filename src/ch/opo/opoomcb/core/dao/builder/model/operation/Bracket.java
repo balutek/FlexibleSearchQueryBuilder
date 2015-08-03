@@ -33,11 +33,6 @@ public class Bracket extends Operation
       operationList.add(operation);
    }
 
-   public List<Operation> getOperationList()
-   {
-      return operationList;
-   }
-
    @Override
    public void render(StringBuilder builder)
    {
