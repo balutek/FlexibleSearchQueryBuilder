@@ -16,22 +16,22 @@ import org.apache.commons.lang.StringUtils;
  */
 public class QueryBuilder
 {
-   private String SELECT_ITEM = "pk";
+   private static final String defaultColumnName = "pk";
 
    private QueryModel queryModel;
 
-   private QueryBuilder(String param, String alias, boolean distinct)
+   private QueryBuilder(String column, String alias, boolean distinct)
    {
-      if (StringUtils.isNotBlank(param))
+      if (StringUtils.isBlank(column))
       {
-         SELECT_ITEM = param; //todo to chyba nie powinno tu byc
+         column = defaultColumnName;
       }
 
       queryModel = new QueryModel();
 
       Select select = new Select();
       select.setDistinct(distinct);
-      select.addColumn(new Column(SELECT_ITEM, alias));
+      select.addColumn(new Column(column, alias));
       queryModel.setSelect(select);
    }
 
