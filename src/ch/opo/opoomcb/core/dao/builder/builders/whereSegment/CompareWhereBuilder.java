@@ -98,27 +98,6 @@ public class CompareWhereBuilder
       return builder.getBitwiseWhereBuilder();
    }
 
-   public BitwiseWhereBuilder startsWith(String alias, String column, String key)
-   {
-      Operation operation = new StartsWith(new Column(column, alias), new Key(key));
-      builder.insertOperation(operation);
-      return builder.getBitwiseWhereBuilder();
-   }
-
-   public BitwiseWhereBuilder endsWith(String alias, String column, String key)
-   {
-      Operation operation = new EndsWith(new Column(column, alias), new Key(key));
-      builder.insertOperation(operation);
-      return builder.getBitwiseWhereBuilder();
-   }
-
-   public BitwiseWhereBuilder contains(String alias, String column, String key)
-   {
-      Operation operation = new Contains(new Column(column, alias), new Key(key));
-      builder.insertOperation(operation);
-      return builder.getBitwiseWhereBuilder();
-   }
-
    public BitwiseWhereBuilder like(String alias, String column, String key)
    {
       Operation operation = new Like(new Column(column, alias), new Key(key));
